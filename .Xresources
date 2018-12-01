@@ -1,3 +1,5 @@
+URxvt.perl-lib:		/usr/lib/urxvt/perl
+
 *foreground: #00cc00
 *foreground_bold: #a8a19f
 *cursor: #a8a19f
@@ -37,7 +39,12 @@ URxvt.cursorColor:	white
 URxvt.font: 		xft:monospace:size=16
 URxvt.scrollBar:	false
 
-URxvt.perl-ext-common:	resize-font
+URxvt.perl-ext-common:	fullscreen,resize-font
+
+!URxvt.keysym.C-k:		resize-font:bigger
+!URxvt.keysym.C-j:		resize-font:smaller
+
+URxvt.keysym.F11:		perl:fullscreen:switch
 
 *URxvt*keysym.C-Right:	\033[1;5C
 *URxvt*keysym.C-Left:	\033[1;5D
