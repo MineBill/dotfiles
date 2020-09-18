@@ -1,0 +1,264 @@
+# ft=i3config
+# I3 Conifig [WIP]
+# __  __ _            ____ ___ _ _
+#|  \/  (_)_ __   ___| __ )_ _| | |
+#| |\/| | | '_ \ / _ \  _ \| || | |
+#| |  | | | | | |  __/ |_) | || | |
+#|_|  |_|_|_| |_|\___|____/___|_|_|
+# Modifer
+set $mod Mod1
+
+font pango:Input Mono 13
+
+# === Variables ===============================================================
+set $BACKGROUND ~/Pictures/forest_lake.jpg
+set $KEY_REPEAT_RATE_HZ 50
+set $KEY_REPEAT_DELAY_MS 250
+set $GAPS_INNER 10
+set $GAPS_OUTER 10
+
+set $PRIMARY_SCREEN HDMI-0
+set $SECONDARY_SCREEN DVI-D-0
+
+# === Colors ==================================================================
+set $base00 #1B2B34FF
+set $base01 #343D46FF
+set $base02 #4F5B66FF
+set $base03 #65737EFF
+set $base04 #A7ADBAFF
+set $base05 #C0C5CEFF
+set $base06 #CDD3DEFF
+set $base07 #D8DEE9FF
+set $base08 #EC5f67FF
+set $base09 #F99157FF
+set $base0A #FAC863FF
+set $base0B #99C794FF
+set $base0C #5FB3B3FF
+set $base0D #6699CCFF
+set $base0E #C594C5FF
+set $base0F #AB7967FF
+
+# === Keybinds ================================================================
+# [ Window Drag Modifier ]
+	floating_modifier $mod
+
+# [ Terminal ]
+	bindsym $mod+Return exec alacritty
+
+# [ Kill Window ]
+	bindsym $mod+Shift+q kill
+
+# [ Focus Keys ]
+
+	#Vim
+	bindsym $mod+h focus left
+	bindsym $mod+j focus down
+	bindsym $mod+k focus up
+	bindsym $mod+l focus right
+
+	#Arrow
+	bindsym $mod+Left focus left
+	bindsym $mod+Down focus down
+	bindsym $mod+Up focus up
+	bindsym $mod+Right focus right
+
+# [ Focused Window Move Keys ]
+
+	# Vim
+	bindsym $mod+Shift+h move left
+	bindsym $mod+Shift+j move down
+	bindsym $mod+Shift+k move up
+	bindsym $mod+Shift+l move right
+
+	#bindsym $mod+Shift+η move left
+	#bindsym $mod+Shift+ξ move down
+	#bindsym $mod+Shift+κ move up
+	#bindsym $mod+Shift+λ move right
+
+	# Arrow
+	bindsym $mod+Shift+Left move left
+	bindsym $mod+Shift+Down move down
+	bindsym $mod+Shift+Up move up
+	bindsym $mod+Shift+Right move right
+
+# [ Splits ]
+	# Horizontal
+	bindsym $mod+b split h
+
+	# Vertical
+	bindsym $mod+v split v
+
+# [ Fullscreen ]
+	bindsym $mod+f fullscreen toggle
+
+# [ Layout ]
+	bindsym $mod+s layout stacking
+	bindsym $mod+w layout tabbed
+	bindsym $mod+e layout toggle split
+
+# [ Toggle Floating ]
+	bindsym $mod+Shift+space floating toggle
+
+# [ Toggle Tiled/Floating Focus ]
+	bindsym $mod+space focus mode_toggle
+
+# [ Reload Config File ]
+	bindsym $mod+Shift+c reload
+
+# [ Restart i3 ]
+	bindsym $mod+Shift+r restart
+
+# [ Exit i3 ]
+	bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+	bindsym $mod+Control+Return exec "alacritty -t 'Calculator'"
+
+# [ Rofi ]
+	bindsym $mod+d exec rofi -show drun -theme slate
+
+# [ Mulitmedia ]
+	bindsym XF86AudioRaiseVolume exec ~/audio_manager.sh + 5
+	bindsym XF86AudioLowerVolume exec ~/audio_manager.sh - 5
+	bindsym XF86AudioMute exec ~/audio_manager.sh toggle
+
+# === Workspaces ==============================================================
+set $workspace1  "1:I"
+set $workspace2  "2:II"
+set $workspace3  "3:III"
+set $workspace4  "4:IV"
+set $workspace5  "5:V"
+set $workspace6  "6:VI"
+set $workspace7  "7:VII"
+set $workspace8  "8:VIII"
+set $workspace9  "9:VVI"
+set $workspace10 "0:X"
+
+workspace $workspace1 output $PRIMARY_SCREEN
+workspace $workspace2 output $PRIMARY_SCREEN
+workspace $workspace3 output $PRIMARY_SCREEN
+workspace $workspace4 output $PRIMARY_SCREEN
+workspace $workspace5 output $PRIMARY_SCREEN
+workspace $workspace6 output $PRIMARY_SCREEN
+workspace $workspace7 output $PRIMARY_SCREEN
+workspace $workspace8 output $PRIMARY_SCREEN
+workspace $workspace9 output $PRIMARY_SCREEN
+workspace $workspace10 output $SECONDARY_SCREEN
+
+# [ Workspace Focus Keybinds ]
+	bindsym $mod+1 workspace $workspace1
+	bindsym $mod+2 workspace $workspace2
+	bindsym $mod+3 workspace $workspace3
+	bindsym $mod+4 workspace $workspace4
+	bindsym $mod+5 workspace $workspace5
+	bindsym $mod+6 workspace $workspace6
+	bindsym $mod+7 workspace $workspace7
+	bindsym $mod+8 workspace $workspace8
+	bindsym $mod+9 workspace $workspace9
+	bindsym $mod+0 workspace $workspace10
+
+# [ Workspace Move Keybinds ]
+	bindsym $mod+Shit+1 move container to workspace $workspace1 
+	bindsym $mod+Shift+2 move container to workspace $workspace2 
+	bindsym $mod+Shift+3 move container to workspace $workspace3 
+	bindsym $mod+Shift+4 move container to workspace $workspace4 
+	bindsym $mod+Shift+5 move container to workspace $workspace5 
+	bindsym $mod+Shift+6 move container to workspace $workspace6 
+	bindsym $mod+Shift+7 move container to workspace $workspace7 
+	bindsym $mod+Shift+8 move container to workspace $workspace8 
+	bindsym $mod+Shift+9 move container to workspace $workspace9 
+	bindsym $mod+Shift+0 move container to workspace $workspace10
+
+
+
+# Resize Keybinds
+bindsym $mod+r mode "resize"
+
+# === Window Configuration ====================================================
+
+for_window [class=".*"] border pixel 4
+for_window [title="Calculator"] floating enable, border pixel 14
+
+hide_edge_borders both
+new_window pixel
+
+gaps inner $GAPS_INNER
+gaps outer $GAPS_OUTER
+
+mode "resize" {
+
+	# Vim
+	bindsym h resize shrink width 10 px or 10 ppt
+	bindsym j resize grow height 10 px or 10 ppt
+	bindsym k resize shrink height 10 px or 10 ppt
+	bindsym l resize grow width 10 px or 10 ppt
+
+	# Arrow
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
+
+	# Exit Resize
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+# == Window Coloring ==
+set $WIN_F_BORDER_COLOR    
+set $WIN_F_BG_COLOR        
+set $WIN_F_TXT_COLOR       
+
+set $WIN_UF_BORDER_COLOR   
+set $WIN_UF_BG_COLOR       
+set $WIN_UF_TXT_COLOR      
+
+set $WIN_FI_BORDER_COLOR   
+set $WIN_FI_BG_COLOR       
+set $WIN_FI_TXT_COLOR      
+
+set $WIN_U_BORDER_COLOR    
+set $WIN_U_BG_COLOR        
+set $WIN_U_TXT_COLOR       
+
+# Window type			Border				 Background		  Text
+client.focused 			$base0A  $base0A $base08  $base0A
+client.unfocused 		$base03  $base03 $base0A  $base03
+client.focused_inactive $base03  $base03 $base0A  $base08
+client.urgent 			$base0C  $base0C $base0A  $base08
+
+# === Bar Configuration =======================================================
+
+# == Bar Coloring ==
+set $WS_BG_COLOR           
+set $WS_TXT_COLOR          
+
+set $WS_F_BORDER_COLOR     
+set $WS_F_BG_COLOR         
+set $WS_F_TXT_COLOR        
+
+set $WS_I_BORDER_COLOR     
+set $WS_I_BG_COLOR         
+set $WS_I_TXT_COLOR        
+
+set $WS_U_BORDER_COLOR     
+set $WS_U_BG_COLOR         
+set $WS_U_TXT_COLOR        
+
+# Startup
+# [ Start the pulse effects service - Used for bass boosting ]
+	exec_always pulseeffects --gapplication-service
+
+# [ Feh - Used for settings a desktop background ]
+    exec_always feh --bg-fill $BACKGROUND
+
+# [ Compton - Used to add transparency to windows ]
+    exec_always picom --experimental-backends
+
+# [ Set the key repeat rate (Wait ms, Repeat hz) ]
+	exec_always xset r rate $KEY_REPEAT_DELAY_MS $KEY_REPEAT_RATE_HZ
+
+	exec_always --no-startup-id ~/polylaunch.sh &
+
+# [ Set the the monitor refresh rate to 144hz (Default is 60hz) ]
+	exec xrandr --output $PRIMARY_SCREEN --mode 1920x1080 --rate 143.98
+    exec xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1
