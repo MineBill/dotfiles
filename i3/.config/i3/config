@@ -7,7 +7,7 @@
 # Modifer
 set $mod Mod1
 
-font pango:Iosevka Regular 10
+font pango:Mononoki Nerd Font Mono 12
 #font pango:Input Mono 10
 
 # === Variables ===============================================================
