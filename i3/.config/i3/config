@@ -11,7 +11,7 @@ set $mod Mod1
 font pango:Input Mono 13
 
 # === Variables ===============================================================
-set $BACKGROUND ~/Pictures/forest_lake.jpg
+set $BACKGROUND ~/monolith.jpg
 set $KEY_REPEAT_RATE_HZ 50
 set $KEY_REPEAT_DELAY_MS 250
 set $GAPS_INNER 10
@@ -177,6 +177,7 @@ bindsym $mod+r mode "resize"
 
 for_window [class=".*"] border pixel 4
 for_window [title="Calculator"] floating enable, border pixel 14
+for_window [class="org.gnome.Nautilus"] floating enable, border pixel 14
 
 hide_edge_borders both
 new_window pixel
