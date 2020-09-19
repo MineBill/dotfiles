@@ -70,7 +70,6 @@ Plug 'junegunn/limelight.vim'
 Plug 'ap/vim-buftabline'
 Plug 'voldikss/vim-floaterm'
 Plug 'itchyny/lightline.vim'
-Plug 'Yggdroot/indentLine'
 
 
 " === Functional ===
