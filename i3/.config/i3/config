@@ -258,7 +258,7 @@ set $WS_U_TXT_COLOR
 # [ Set the key repeat rate (Wait ms, Repeat hz) ]
 	exec_always xset r rate $KEY_REPEAT_DELAY_MS $KEY_REPEAT_RATE_HZ
 
-	exec_always --no-startup-id ~/polylaunch.sh &
+	exec_always --no-startup-id ~/.config/polybar/launch.sh &
 
 # [ Set the the monitor refresh rate to 144hz (Default is 60hz) ]
 	exec xrandr --output $PRIMARY_SCREEN --mode 1920x1080 --rate 143.98
