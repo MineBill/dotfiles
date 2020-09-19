@@ -1,4 +1,3 @@
-# ft=i3config
 # I3 Conifig [WIP]
 # __  __ _            ____ ___ _ _
 #|  \/  (_)_ __   ___| __ )_ _| | |
@@ -8,7 +7,8 @@
 # Modifer
 set $mod Mod1
 
-font pango:Input Mono 13
+font pango:Iosevka Regular 10
+#font pango:Input Mono 10
 
 # === Variables ===============================================================
 set $BACKGROUND ~/monolith.jpg
@@ -109,7 +109,8 @@ set $base0F #AB7967FF
 	bindsym $mod+Shift+r restart
 
 # [ Exit i3 ]
-	bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+	#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+	bindsym $mod+Shift+e exec ~/scripts/exit_i3.sh
 
 	bindsym $mod+Control+Return exec "alacritty -t 'Calculator'"
 
@@ -177,7 +178,7 @@ bindsym $mod+r mode "resize"
 
 for_window [class=".*"] border pixel 4
 for_window [title="Calculator"] floating enable, border pixel 14
-for_window [class="org.gnome.Nautilus"] floating enable, border pixel 14
+for_window [class="Org.gnome.Nautilus"] floating enable, border pixel 2
 
 hide_edge_borders both
 new_window pixel
@@ -204,48 +205,14 @@ mode "resize" {
 	bindsym Escape mode "default"
 }
 
-# == Window Coloring ==
-set $WIN_F_BORDER_COLOR    
-set $WIN_F_BG_COLOR        
-set $WIN_F_TXT_COLOR       
-
-set $WIN_UF_BORDER_COLOR   
-set $WIN_UF_BG_COLOR       
-set $WIN_UF_TXT_COLOR      
-
-set $WIN_FI_BORDER_COLOR   
-set $WIN_FI_BG_COLOR       
-set $WIN_FI_TXT_COLOR      
-
-set $WIN_U_BORDER_COLOR    
-set $WIN_U_BG_COLOR        
-set $WIN_U_TXT_COLOR       
-
 # Window type			Border				 Background		  Text
 client.focused 			$base0A  $base0A $base08  $base0A
 client.unfocused 		$base03  $base03 $base0A  $base03
 client.focused_inactive $base03  $base03 $base0A  $base08
 client.urgent 			$base0C  $base0C $base0A  $base08
 
-# === Bar Configuration =======================================================
-
-# == Bar Coloring ==
-set $WS_BG_COLOR           
-set $WS_TXT_COLOR          
-
-set $WS_F_BORDER_COLOR     
-set $WS_F_BG_COLOR         
-set $WS_F_TXT_COLOR        
-
-set $WS_I_BORDER_COLOR     
-set $WS_I_BG_COLOR         
-set $WS_I_TXT_COLOR        
-
-set $WS_U_BORDER_COLOR     
-set $WS_U_BG_COLOR         
-set $WS_U_TXT_COLOR        
-
 # Startup
+    exec /usr/lib/notification-daemon-1.0/notification-daemon &
 # [ Start the pulse effects service - Used for bass boosting ]
 	exec_always pulseeffects --gapplication-service
 
@@ -263,3 +230,4 @@ set $WS_U_TXT_COLOR
 # [ Set the the monitor refresh rate to 144hz (Default is 60hz) ]
 	exec xrandr --output $PRIMARY_SCREEN --mode 1920x1080 --rate 143.98
     exec xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1
+# vim: set ft=i3config:
