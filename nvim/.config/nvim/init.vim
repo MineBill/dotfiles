@@ -61,6 +61,7 @@ call plug#begin('~/.config/nvim/plugged')
 " === Colorschemes ===
 Plug 'MineBill/vim-colors'
 Plug 'jaredgorski/spacecamp'
+Plug 'embark-theme/vim', { 'as': 'embark' }
 
 
 " === Visual ===
@@ -69,7 +70,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'ap/vim-buftabline'
 Plug 'voldikss/vim-floaterm'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+"Plug 'itchyny/lightline.vim'
 
 
 " === Functional ===
@@ -120,6 +122,11 @@ END
 " === Generic ===
 let g:polyglot_disabled = ['autoindent']
 let g:lightline = { 'colorscheme': 'wombat' }
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_powerline_fonts = 1
+"let g:airline_symbols = { '∫' }
 set fillchars+=vert:⏐
 hi VertSplit ctermbg=NONE guibg=NONE
 
