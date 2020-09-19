@@ -228,6 +228,6 @@ client.urgent 			$base0C  $base0C $base0A  $base08
 	exec_always --no-startup-id ~/.config/polybar/launch.sh &
 
 # [ Set the the monitor refresh rate to 144hz (Default is 60hz) ]
-	exec xrandr --output $PRIMARY_SCREEN --mode 1920x1080 --rate 143.98
+	exec xrandr --output $PRIMARY_SCREEN --primary --mode 1920x1080 --rate 143.98
     exec xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1
 # vim: set ft=i3config:
