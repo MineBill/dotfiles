@@ -1,11 +1,11 @@
-#Personal repo for my dotfiles
+# Personal repo for my dotfiles
 
-##Usage:
+## Usage:
 `stow -vt ~ *` To stow everything or:
 `stow -vt ~ <folde>` to stow only the specified folder
 
-###Alacritty
-###doom-emacs
-###picom
-###zsh
-###i3
+### Alacritty
+### doom-emacs
+### picom
+### zsh
+### i3
