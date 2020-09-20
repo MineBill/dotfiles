@@ -167,37 +167,66 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Hyper)
+# Colors (Nord)
 colors:
   # Default colors
   primary:
-    background: '0x000000'
-    foreground: '0xffffff'
-  cursor:
-    text: '0xF81CE5'
-    cursor: '0xffffff'
+    background: '0x2E3440'
+    foreground: '0xD8DEE9'
 
   # Normal colors
   normal:
-    black:   '0x000000'
-    red:     '0xfe0100'
-    green:   '0x33ff00'
-    yellow:  '0xfeff00'
-    blue:    '0x0066ff'
-    magenta: '0xcc00ff'
-    cyan:    '0x00ffff'
-    white:   '0xd0d0d0'
+    black:   '0x3B4252'
+    red:     '0xBF616A'
+    green:   '0xA3BE8C'
+    yellow:  '0xEBCB8B'
+    blue:    '0x81A1C1'
+    magenta: '0xB48EAD'
+    cyan:    '0x88C0D0'
+    white:   '0xE5E9F0'
 
   # Bright colors
   bright:
-    black:   '0x808080'
-    red:     '0xfe0100'
-    green:   '0x33ff00'
-    yellow:  '0xfeff00'
-    blue:    '0x0066ff'
-    magenta: '0xcc00ff'
-    cyan:    '0x00ffff'
-    white:   '0xFFFFFF'
+    black:   '0x4C566A'
+    red:     '0xBF616A'
+    green:   '0xA3BE8C'
+    yellow:  '0xEBCB8B'
+    blue:    '0x81A1C1'
+    magenta: '0xB48EAD'
+    cyan:    '0x8FBCBB'
+    white:   '0xECEFF4'
+
+# Colors (Hyper)
+#colors:
+  # Default colors
+  #primary:
+    #background: '0x000000'
+    #foreground: '0xffffff'
+  #cursor:
+    #text: '0xF81CE5'
+    #cursor: '0xffffff'
+
+  # Normal colors
+  #normal:
+    #black:   '0x000000'
+    #red:     '0xfe0100'
+    #green:   '0x33ff00'
+    #yellow:  '0xfeff00'
+    #blue:    '0x0066ff'
+    #magenta: '0xcc00ff'
+    #cyan:    '0x00ffff'
+    #white:   '0xd0d0d0'
+
+  # Bright colors
+  #bright:
+    #black:   '0x808080'
+    #red:     '0xfe0100'
+    #green:   '0x33ff00'
+    #yellow:  '0xfeff00'
+    #blue:    '0x0066ff'
+    #magenta: '0xcc00ff'
+    #cyan:    '0x00ffff'
+    #white:   '0xFFFFFF'
 
 
 # Colors (Gruvbox dark)
