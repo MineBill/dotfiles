@@ -39,90 +39,80 @@ set $base0E #C594C5FF
 set $base0F #AB7967FF
 
 # === Keybinds ================================================================
-# [ Window Drag Modifier ]
-	floating_modifier $mod
+# Window Drag Modifier ]
+floating_modifier $mod
 
-# [ Terminal ]
-	bindsym $mod+Return exec alacritty
+# Terminal
+bindsym $mod+Return exec alacritty
 
-# [ Kill Window ]
-	bindsym $mod+Shift+q kill
+# Kill Window
+bindsym $mod+Shift+q kill
 
-# [ Focus Keys ]
+# Focus Keys
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
-	#Vim
-	bindsym $mod+h focus left
-	bindsym $mod+j focus down
-	bindsym $mod+k focus up
-	bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
-	#Arrow
-	bindsym $mod+Left focus left
-	bindsym $mod+Down focus down
-	bindsym $mod+Up focus up
-	bindsym $mod+Right focus right
+# Focused Window Move Keys
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
-# [ Focused Window Move Keys ]
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
-	# Vim
-	bindsym $mod+Shift+h move left
-	bindsym $mod+Shift+j move down
-	bindsym $mod+Shift+k move up
-	bindsym $mod+Shift+l move right
+# === Splits ===
 
-	#bindsym $mod+Shift+η move left
-	#bindsym $mod+Shift+ξ move down
-	#bindsym $mod+Shift+κ move up
-	#bindsym $mod+Shift+λ move right
+# Horizontal
+bindsym $mod+b split h
 
-	# Arrow
-	bindsym $mod+Shift+Left move left
-	bindsym $mod+Shift+Down move down
-	bindsym $mod+Shift+Up move up
-	bindsym $mod+Shift+Right move right
+# Vertical
+bindsym $mod+v split v
 
-# [ Splits ]
-	# Horizontal
-	bindsym $mod+b split h
+# Fullscreen
+bindsym $mod+f fullscreen toggle
 
-	# Vertical
-	bindsym $mod+v split v
+# Layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
-# [ Fullscreen ]
-	bindsym $mod+f fullscreen toggle
+# Toggle Floating
+bindsym $mod+Shift+space floating toggle
 
-# [ Layout ]
-	bindsym $mod+s layout stacking
-	bindsym $mod+w layout tabbed
-	bindsym $mod+e layout toggle split
+# Toggle Tiled/Floating Focus
+bindsym $mod+space focus mode_toggle
 
-# [ Toggle Floating ]
-	bindsym $mod+Shift+space floating toggle
+# Reload Config File
+bindsym $mod+Shift+c reload
 
-# [ Toggle Tiled/Floating Focus ]
-	bindsym $mod+space focus mode_toggle
+# Restart i3
+bindsym $mod+Shift+r restart
 
-# [ Reload Config File ]
-	bindsym $mod+Shift+c reload
+# Mulitmedia ]
+bindsym XF86AudioRaiseVolume exec ~/audio_manager.sh + 5
+bindsym XF86AudioLowerVolume exec ~/audio_manager.sh - 5
+bindsym XF86AudioMute exec ~/audio_manager.sh toggle
 
-# [ Restart i3 ]
-	bindsym $mod+Shift+r restart
+# === Application Quicklanch Bindings ===
 
-# [ Exit i3 ]
-	#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-	bindsym $mod+Shift+e exec ~/scripts/exit_i3.sh
+# Powermenu
+bindsym $mod+Shift+e exec ~/scripts/exit_i3.sh
+# Alacritty
+bindsym $mod+Control+Return exec "alacritty -t 'Calculator'"
+# Rofi
+bindsym $mod+d exec rofi -show drun -theme slate
 
-	bindsym $mod+Control+Return exec "alacritty -t 'Calculator'"
-
-# [ Rofi ]
-	bindsym $mod+d exec rofi -show drun -theme slate
-
-# [ Mulitmedia ]
-	bindsym XF86AudioRaiseVolume exec ~/audio_manager.sh + 5
-	bindsym XF86AudioLowerVolume exec ~/audio_manager.sh - 5
-	bindsym XF86AudioMute exec ~/audio_manager.sh toggle
-
-# === Workspaces ==============================================================
+# === Workspaces ===
 set $workspace1  "1:I"
 set $workspace2  "2:II"
 set $workspace3  "3:III"
@@ -131,7 +121,7 @@ set $workspace5  "5:V"
 set $workspace6  "6:VI"
 set $workspace7  "7:VII"
 set $workspace8  "8:VIII"
-set $workspace9  "9:VVI"
+set $workspace9  "9:IX"
 set $workspace10 "0:X"
 
 workspace $workspace1 output $PRIMARY_SCREEN
@@ -145,30 +135,29 @@ workspace $workspace8 output $PRIMARY_SCREEN
 workspace $workspace9 output $PRIMARY_SCREEN
 workspace $workspace10 output $SECONDARY_SCREEN
 
-# [ Workspace Focus Keybinds ]
-	bindsym $mod+1 workspace $workspace1
-	bindsym $mod+2 workspace $workspace2
-	bindsym $mod+3 workspace $workspace3
-	bindsym $mod+4 workspace $workspace4
-	bindsym $mod+5 workspace $workspace5
-	bindsym $mod+6 workspace $workspace6
-	bindsym $mod+7 workspace $workspace7
-	bindsym $mod+8 workspace $workspace8
-	bindsym $mod+9 workspace $workspace9
-	bindsym $mod+0 workspace $workspace10
+# Workspace Focus Keybinds
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
 
-# [ Workspace Move Keybinds ]
-	bindsym $mod+Shit+1 move container to workspace $workspace1 
-	bindsym $mod+Shift+2 move container to workspace $workspace2 
-	bindsym $mod+Shift+3 move container to workspace $workspace3 
-	bindsym $mod+Shift+4 move container to workspace $workspace4 
-	bindsym $mod+Shift+5 move container to workspace $workspace5 
-	bindsym $mod+Shift+6 move container to workspace $workspace6 
-	bindsym $mod+Shift+7 move container to workspace $workspace7 
-	bindsym $mod+Shift+8 move container to workspace $workspace8 
-	bindsym $mod+Shift+9 move container to workspace $workspace9 
-	bindsym $mod+Shift+0 move container to workspace $workspace10
-
+# Workspace Move Keybinds
+bindsym $mod+Shift+1 move container to workspace $workspace1 
+bindsym $mod+Shift+2 move container to workspace $workspace2 
+bindsym $mod+Shift+3 move container to workspace $workspace3 
+bindsym $mod+Shift+4 move container to workspace $workspace4 
+bindsym $mod+Shift+5 move container to workspace $workspace5 
+bindsym $mod+Shift+6 move container to workspace $workspace6 
+bindsym $mod+Shift+7 move container to workspace $workspace7 
+bindsym $mod+Shift+8 move container to workspace $workspace8 
+bindsym $mod+Shift+9 move container to workspace $workspace9 
+bindsym $mod+Shift+0 move container to workspace $workspace10
 
 
 # Resize Keybinds
@@ -213,6 +202,7 @@ client.urgent 			$base0C  $base0C $base0A  $base08
 
 # Startup
     exec /usr/lib/notification-daemon-1.0/notification-daemon &
+    exec ~/scripts/startup_apps.sh &
 # [ Start the pulse effects service - Used for bass boosting ]
 	exec_always pulseeffects --gapplication-service
 
