@@ -94,6 +94,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'nvim-lua/completion-nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'steelsojka/completion-buffers'
+Plug 'nvim-lua/diagnostic-nvim'
 
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
