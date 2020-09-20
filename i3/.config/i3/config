@@ -37,6 +37,7 @@ set $base0C #5FB3B3FF
 set $base0D #6699CCFF
 set $base0E #C594C5FF
 set $base0F #AB7967FF
+set $cool #43A5F5
 
 # === Keybinds ================================================================
 # Window Drag Modifier ]
@@ -195,14 +196,15 @@ mode "resize" {
 }
 
 # Window type			Border				 Background		  Text
-client.focused 			$base0A  $base0A $base08  $base0A
+#client.focused 			$base0A  $base0A $base08  $base0A
+client.focused 			$cool  $cool $base08  $base0A
 client.unfocused 		$base03  $base03 $base0A  $base03
 client.focused_inactive $base03  $base03 $base0A  $base08
 client.urgent 			$base0C  $base0C $base0A  $base08
 
 # Startup
     exec /usr/lib/notification-daemon-1.0/notification-daemon &
-    exec ~/scripts/startup_apps.sh &
+    exec ~/scripts/startup_apps.sh
 # [ Start the pulse effects service - Used for bass boosting ]
 	exec_always pulseeffects --gapplication-service
 
