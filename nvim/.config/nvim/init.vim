@@ -62,6 +62,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'MineBill/vim-colors'
 Plug 'jaredgorski/spacecamp'
 Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'arcticicestudio/nord-vim'
 
 
 " === Visual ===
@@ -103,7 +104,8 @@ call plug#end()
 "colorscheme space-vim-dark
 "colorscheme space-vim-dark
 "colorscheme gruvbox
-colorscheme deus
+"colorscheme deus
+colorscheme embark
 
 " === === ===  ===
 " === Settings ===

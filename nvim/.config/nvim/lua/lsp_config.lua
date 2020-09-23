@@ -2,7 +2,8 @@ local lsp = require'nvim_lsp'
 lsp.rust_analyzer.setup{on_attach = on_attach}
 lsp.tsserver.setup{on_attach = on_attach}
 lsp.gdscript.setup{on_attach = on_attach}
-lsp.clangd.setup{on_attach = on_attach}
+--lsp.clangd.setup{on_attach = on_attach}
+lsp.ccls.setup{on_attach = on_attach}
 lsp.pyls.setup{on_attach = on_attach}
 
 local map = function(type, key, value)
