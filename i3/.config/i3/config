@@ -205,6 +205,7 @@ client.urgent 			$base0C  $base0C $base0A  $base08
 # Startup
     exec /usr/lib/notification-daemon-1.0/notification-daemon &
     exec ~/scripts/startup_apps.sh
+    exec lxsession &
 # [ Start the pulse effects service - Used for bass boosting ]
 	exec_always pulseeffects --gapplication-service
 
