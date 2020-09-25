@@ -63,6 +63,8 @@ Plug 'MineBill/vim-colors'
 Plug 'jaredgorski/spacecamp'
 Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'arcticicestudio/nord-vim'
+Plug 'reewr/vim-monokai-phoenix'
+Plug 'Badacadabra/vim-archery'
 
 
 " === Visual ===
@@ -106,7 +108,8 @@ call plug#end()
 "colorscheme space-vim-dark
 "colorscheme gruvbox
 "colorscheme deus
-colorscheme embark
+"colorscheme monokai-phoenix
+colorscheme archery
 
 " === === ===  ===
 " === Settings ===
