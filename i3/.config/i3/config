@@ -111,8 +111,8 @@ bindsym $mod+Shift+e exec ~/scripts/exit_i3.sh
 # Alacritty
 bindsym $mod+Control+Return exec "alacritty -t 'Calculator'"
 # Rofi
-bindsym $mod+d exec rofi -show drun -theme material
-bindsym $mod+m exec rofi -show window -theme material
+bindsym $mod+d exec rofi -show drun -theme material -icon-theme "Numix" -show-icons
+bindsym $mod+m exec rofi -show window -theme material -icon-theme "Numix" -show-icons
 #-theme slate
 
 # === Workspaces ===
