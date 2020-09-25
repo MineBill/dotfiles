@@ -14,8 +14,8 @@ font pango:Mononoki Nerd Font Mono 12
 set $BACKGROUND ~/Pictures/mountains.jpg
 set $KEY_REPEAT_RATE_HZ 50
 set $KEY_REPEAT_DELAY_MS 250
-set $GAPS_INNER 2
-set $GAPS_OUTER 2
+set $GAPS_INNER 4
+set $GAPS_OUTER 4
 
 set $PRIMARY_SCREEN HDMI-0
 set $SECONDARY_SCREEN DVI-D-0
@@ -50,26 +50,26 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # Focus Keys
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+h           focus left
+bindsym $mod+j           focus down
+bindsym $mod+k           focus up
+bindsym $mod+l           focus right
 
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+Left        focus left
+bindsym $mod+Down        focus down
+bindsym $mod+Up          focus up
+bindsym $mod+Right       focus right
 
-# Focused Window Move Keys
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+#       Focused          WindowMove    Keys
+bindsym $mod+Shift+h     move  left
+bindsym $mod+Shift+j     move  down
+bindsym $mod+Shift+k     move  up
+bindsym $mod+Shift+l     move  right
 
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left  move  left
+bindsym $mod+Shift+Down  move  down
+bindsym $mod+Shift+Up    move  up
+bindsym $mod+Shift+Right move  right
 
 # === Splits ===
 
@@ -111,19 +111,21 @@ bindsym $mod+Shift+e exec ~/scripts/exit_i3.sh
 # Alacritty
 bindsym $mod+Control+Return exec "alacritty -t 'Calculator'"
 # Rofi
-bindsym $mod+d exec rofi -show drun -theme slate
+bindsym $mod+d exec rofi -show drun -theme material
+bindsym $mod+m exec rofi -show window -theme material
+#-theme slate
 
 # === Workspaces ===
-set $workspace1  "1:I"
-set $workspace2  "2:II"
-set $workspace3  "3:III"
-set $workspace4  "4:IV"
-set $workspace5  "5:V"
-set $workspace6  "6:VI"
-set $workspace7  "7:VII"
-set $workspace8  "8:VIII"
-set $workspace9  "9:IX"
-set $workspace10 "0:X"
+set $workspace1  "1"
+set $workspace2  "2"
+set $workspace3  "3"
+set $workspace4  "4"
+set $workspace5  "5"
+set $workspace6  "6"
+set $workspace7  "7"
+set $workspace8  "8"
+set $workspace9  "9"
+set $workspace10 "0"
 
 workspace $workspace1 output $PRIMARY_SCREEN
 workspace $workspace2 output $PRIMARY_SCREEN
@@ -166,7 +168,7 @@ bindsym $mod+r mode "resize"
 
 # === Window Configuration ====================================================
 
-for_window [class=".*"] floating enable, border pixel 3
+for_window [class=".*"] border pixel 3
 for_window [title="Calculator"] floating enable, border pixel 14
 for_window [class="Org.gnome.Nautilus"] floating enable, border pixel 2
 
@@ -210,7 +212,8 @@ client.urgent 			$base0C  $base0C $base0A  $base08
 	exec_always pulseeffects --gapplication-service
 
 # [ Feh - Used for settings a desktop background ]
-    exec_always feh --bg-fill $BACKGROUND
+    #exec_always feh --bg-fill $BACKGROUND
+    exec_always nitrogen --restore
 
 # [ Compton - Used to add transparency to windows ]
     exec_always picom --experimental-backends
