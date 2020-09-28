@@ -1,6 +1,28 @@
-if [[ -f ~/.zsh_aliases ]]; then
-. ~/.zsh_aliases
-fi
+function aliases {
+    alias ls=exa                                                                   
+    alias l='ls -l'                                                                
+    alias ll='ls -al'                                                              
+                                                                                   
+    alias vim=nvim                                                                 
+    alias vi=nvim                                                                  
+    alias v=nvim                                                                   
+                                                                                   
+    alias cls=clear                                                                
+                                                                                   
+    alias vv='vim ~/.config/nvim/init.vim'                                         
+    alias va='vim ~/.config/alacritty/alacritty.yml'                               
+    alias vp='vim ~/.config/polybar/config.ini'                                    
+    alias vk='vim ~/.config/kitty/kitty.conf'                                      
+    alias v3='vim ~/.config/i3/config'                                             
+    alias vb='vim ~/.bashrc'                                                       
+    alias vz='vim ~/.zshrc'                                                        
+    alias vba='vim ~/.bash_aliases'                                                
+    alias vza='vim ~/.zsh_aliases'                                                 
+                                                                                   
+    alias cdd='cd ~/.dotfiles'
+}
+
+aliases
 
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
