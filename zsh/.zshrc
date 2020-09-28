@@ -2,6 +2,9 @@ if [[ -f ~/.zsh_aliases ]]; then
 . ~/.zsh_aliases
 fi
 
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
