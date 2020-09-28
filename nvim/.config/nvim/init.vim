@@ -89,6 +89,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':let coc_enabled=1'}
 
 
 " === Languages ===
@@ -104,27 +105,11 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
-"colorscheme space-vim-dark
-"colorscheme space-vim-dark
-"colorscheme gruvbox
-"colorscheme deus
-"colorscheme monokai-phoenix
-colorscheme archery
+colorscheme monokai-phoenix
 
 " === === ===  ===
 " === Settings ===
 " === === ===  ===
-
-" === NVIM LSP ===
-lua << END
-local lsp = require'nvim_lsp'
-lsp.rust_analyzer.setup{}
-lsp.tsserver.setup{}
-lsp.gdscript.setup{}
-lsp.clangd.setup{}
-lsp.pyls.setup{}
-END
-
 
 " === Generic ===
 let g:polyglot_disabled = ['autoindent']
@@ -146,32 +131,40 @@ let g:NERDTreeWinSize = 25
 
 
 " === Completion ===
-let g:completion_chain_complete_list = [
-    \{ 'complete_items' : [ 'lsp', 'buffer' ] },
-    \{ 'mode' : '<c-p>' },
-    \{ 'mode' : '<c-n>' }
-\]
-let g:completion_items_priority = {
-        \ 'Field': 5,
-        \ 'Function': 7,
-        \ 'Variables': 7,
-        \ 'Method': 10,
-        \ 'Interfaces': 5,
-        \ 'Constant': 5,
-        \ 'Class': 5,
-        \ 'Keyword': 4,
-        \ 'UltiSnips' : 1,
-        \ 'vim-vsnip' : 0,
-        \ 'Buffers' : 1,
-        \ 'TabNine' : 0,
-        \ 'File' : 0,
-        \}
-let g:completion_sorting = 'length'
+inoremap <expr><Tab>   pumvisible() ? "\<C-N>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-P>" : "\<Tab>"
+
 set completeopt=menuone,noinsert,noselect
 
-" Fixes conflict with the auto-pairs plugin
-let g:completion_confirm_key = ""
-inoremap <expr> <cr>    pumvisible() ? "\<Plug>(completion_confirm_completion)" : "\<cr>"
+if has('coc_enabled')
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+    inoremap <expr> <cr>    pumvisible() ? "\<Plug>(completion_confirm_completion)" : "\<cr>"
+    let g:completion_chain_complete_list = [
+        \{ 'complete_items' : [ 'lsp', 'buffer' ] },
+        \{ 'mode' : '<c-p>' },
+        \{ 'mode' : '<c-n>' }
+    \]
+    let g:completion_items_priority = {
+            \ 'Field': 5,
+            \ 'Function': 7,
+            \ 'Variables': 7,
+            \ 'Method': 10,
+            \ 'Interfaces': 5,
+            \ 'Constant': 5,
+            \ 'Class': 5,
+            \ 'Keyword': 4,
+            \ 'UltiSnips' : 1,
+            \ 'vim-vsnip' : 0,
+            \ 'Buffers' : 1,
+            \ 'TabNine' : 0,
+            \ 'File' : 0,
+            \}
+    let g:completion_sorting = 'length'
+
+    " Fixes conflict with the auto-pairs plugin
+    let g:completion_confirm_key = ""
+endif
 
 
 " === Vim-Rainbow ===
@@ -222,8 +215,6 @@ nnoremap <Leader>of :FZF<CR>
 
 
 " === Autocomplete window (CoC) ===
-inoremap <expr><Tab>   pumvisible() ? "\<C-N>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-P>" : "\<Tab>"
 
 noremap <S-Tab> :bn<CR>
 noremap <C-Tab> :bp<CR>
@@ -237,22 +228,18 @@ nnoremap <Leader>fmt <cmd>lua vim.lsp.buf.formatting()<CR>
 
 
 " === Autocommands ===
-function! EchoTest()
-    echo "Test"
-    echom "Message Test"
-endfunction
-
-
-augroup highlight_yank
+augroup HighlightYank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
 
 
-augroup Completion
-    autocmd!
-    "autocmd BufEnter * lua require'completion'.on_attach()
-augroup END
+if has('coc_enabled')
+    augroup Completion
+        autocmd!
+        autocmd BufEnter * lua require'completion'.on_attach()
+    augroup END
+endif
 
 
 augroup ZenMode
