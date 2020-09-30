@@ -21,8 +21,8 @@ function aliases {
                                                                                    
     alias cdd='cd ~/.dotfiles'
 }
-
 aliases
+
 
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
@@ -40,3 +40,5 @@ PS1="%F{yellow}%n%F{green}:%F{blue}%1~%f%F{red}[]%f"$'\n'"%F{green}:: %f"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+export PATH=”~/.emacs.d/bin:$PATH”

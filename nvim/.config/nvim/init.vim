@@ -96,10 +96,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':let coc_enabled=1'}
 Plug 'rust-lang/rust.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'nvim-lua/completion-nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'steelsojka/completion-buffers'
-Plug 'nvim-lua/diagnostic-nvim'
+"Plug 'nvim-lua/completion-nvim'
+"Plug 'neovim/nvim-lspconfig'
+"Plug 'steelsojka/completion-buffers'
+"Plug 'nvim-lua/diagnostic-nvim'
 
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -137,9 +137,9 @@ inoremap <expr><S-Tab> pumvisible() ? "\<C-P>" : "\<Tab>"
 set completeopt=menuone,noinsert,noselect
 
 if has('coc_enabled')
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
 else
-    inoremap <expr> <cr>    pumvisible() ? "\<Plug>(completion_confirm_completion)" : "\<cr>"
+    "inoremap <expr> <cr>    pumvisible() ? "\<Plug>(completion_confirm_completion)" : "\<cr>"
     let g:completion_chain_complete_list = [
         \{ 'complete_items' : [ 'lsp', 'buffer' ] },
         \{ 'mode' : '<c-p>' },
@@ -218,14 +218,6 @@ nnoremap <Leader>of :FZF<CR>
 
 noremap <S-Tab> :bn<CR>
 noremap <C-Tab> :bp<CR>
-
-
-" === Nvim Lsp ===
-nnoremap <Leader>h <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <Leader>gt <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <Leader>gr <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <Leader>fmt <cmd>lua vim.lsp.buf.formatting()<CR>
-
 
 " === Autocommands ===
 augroup HighlightYank
