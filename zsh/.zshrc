@@ -19,7 +19,9 @@ function aliases {
     alias vba='vim ~/.bash_aliases'                                                
     alias vza='vim ~/.zsh_aliases'                                                 
                                                                                    
-    alias cdd='cd ~/.dotfiles'
+    alias d='cd ~/.dotfiles'
+
+    alias gs='git status'
 }
 aliases
 
