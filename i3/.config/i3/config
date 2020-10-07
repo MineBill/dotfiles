@@ -7,44 +7,46 @@
 # Modifer
 set $mod Mod1
 
-font pango:Mononoki Nerd Font Mono 12
-#font pango:Input Mono 10
+#font pango:TerminessTTF Nerd Font 14
+font pango:Hack 12
 
 # === Variables ===============================================================
-set $BACKGROUND ~/Pictures/mountains.jpg
 set $KEY_REPEAT_RATE_HZ 50
 set $KEY_REPEAT_DELAY_MS 250
-set $GAPS_INNER 15
-set $GAPS_OUTER 10
+set $GAPS_INNER 5
+set $GAPS_OUTER 5
 
 set $PRIMARY_SCREEN HDMI-0
 set $SECONDARY_SCREEN DVI-D-0
 
 # === Colors ==================================================================
-set $base00 #1B2B34FF
-set $base01 #343D46FF
-set $base02 #4F5B66FF
-set $base03 #65737EFF
-set $base04 #A7ADBAFF
-set $base05 #C0C5CEFF
-set $base06 #CDD3DEFF
-set $base07 #D8DEE9FF
-set $base08 #EC5f67FF
-set $base09 #F99157FF
-set $base0A #FAC863FF
-set $base0B #99C794FF
-set $base0C #5FB3B3FF
-set $base0D #6699CCFF
-set $base0E #C594C5FF
-set $base0F #AB7967FF
-set $cool #43A5F5
+set $base00 #0F1C21
+set $base01 #C04D3C
+set $base02 #726539
+set $base03 #93634E
+set $base04 #5E584C
+set $base05 #705545
+set $base06 #7D8379
+set $base07 #d7c3a9
+set $base08 #1e3943
+set $base09 #ff573d
+set $base0A #9f893e
+set $base0B #cd7a56
+set $base0C #857657
+set $base0D #9d6b4d
+set $base0E #9fba8d
+set $base0F #ffffdd
+set $active #a36144
+set $inactive #0F1C21
+set $RED #FF0000
+#set $cool #32BC60
 
 # === Keybinds ================================================================
 # Window Drag Modifier ]
 floating_modifier $mod
 
 # Terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # Kill Window
 bindsym $mod+Shift+q kill
@@ -109,10 +111,10 @@ bindsym XF86AudioMute exec ~/audio_manager.sh toggle
 # Powermenu
 bindsym $mod+Shift+e exec ~/scripts/exit_i3.sh
 # Alacritty
-bindsym $mod+Control+Return exec "alacritty -t 'Calculator'"
+bindsym $mod+Control+Return exec "alacritty -t 'TempTerm'"
 # Rofi
-bindsym $mod+d exec rofi -show drun -theme arcterial -icon-theme "Numix" -show-icons
-bindsym $mod+m exec rofi -show window -theme arcterial -icon-theme "Numix" -show-icons
+bindsym $mod+d exec rofi -show drun -theme custom -icon-theme "Numix" -show-icons
+bindsym $mod+m exec rofi -show window -theme custom -icon-theme "Numix" -show-icons
 #-theme slate
 
 # === Workspaces ===
@@ -167,13 +169,12 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 bindsym $mod+r mode "resize"
 
 # === Window Configuration ====================================================
-
-for_window [class=".*"] border pixel 3
-for_window [title="Calculator"] floating enable, border pixel 14
-for_window [class="Org.gnome.Nautilus"] floating enable, border pixel 2
+#for_window [title="*"] border pixel 3
+for_window [title="TempTerm"] floating enable
+for_window [class="Org.gnome.Nautilus"] floating enable
 
 hide_edge_borders both
-new_window pixel
+default_border pixel 3
 
 gaps inner $GAPS_INNER
 gaps outer $GAPS_OUTER
@@ -185,16 +186,16 @@ for_window [class="discord"] move container to workspace $workspace8
 mode "resize" {
 
 	# Vim
-	bindsym h resize shrink width 10 px or 10 ppt
-	bindsym j resize grow height 10 px or 10 ppt
-	bindsym k resize shrink height 10 px or 10 ppt
-	bindsym l resize grow width 10 px or 10 ppt
+	bindsym h resize shrink width   10 px or 10 ppt
+	bindsym j resize grow height    10 px or 10 ppt
+	bindsym k resize shrink height  10 px or 10 ppt
+	bindsym l resize grow width     10 px or 10 ppt
 
 	# Arrow
-	bindsym Left resize shrink width 10 px or 10 ppt
-	bindsym Down resize grow height 10 px or 10 ppt
-	bindsym Up resize shrink height 10 px or 10 ppt
-	bindsym Right resize grow width 10 px or 10 ppt
+	bindsym Left resize shrink width    10 px or 10 ppt
+	bindsym Down resize grow height     10 px or 10 ppt
+	bindsym Up resize shrink height     10 px or 10 ppt
+	bindsym Right resize grow width     10 px or 10 ppt
 
 	# Exit Resize
 	bindsym Return mode "default"
@@ -203,9 +204,9 @@ mode "resize" {
 
 # Window type			Border				 Background		  Text
 #client.focused 			$base0A  $base0A $base08  $base0A
-client.focused 			$cool  $cool $base08  $base0A
-client.unfocused 		$base03  $base03 $base0A  $base03
-client.focused_inactive $base03  $base03 $base0A  $base08
+client.focused 			$active    $active   $base08  $base0A
+client.unfocused 		$inactive  $inactive $base0A  $base03
+client.focused_inactive $inactive  $inactive $base0A  $base08
 client.urgent 			$base0C  $base0C $base0A  $base08
 
 # Startup
@@ -214,6 +215,7 @@ client.urgent 			$base0C  $base0C $base0A  $base08
     exec imwheel
 	exec xrandr --output $PRIMARY_SCREEN --primary --mode 1920x1080 --rate 143.98
     exec xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1
+    exec_always --no-startup-id ~/.config/i3/alternating_layouts.py
 
 	exec_always pulseeffects --gapplication-service
     exec_always nitrogen --restore
