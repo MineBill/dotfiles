@@ -20,24 +20,25 @@ set $PRIMARY_SCREEN HDMI-0
 set $SECONDARY_SCREEN DVI-D-0
 
 # === Colors ==================================================================
-set $base00 #0F1C21
-set $base01 #C04D3C
-set $base02 #726539
-set $base03 #93634E
-set $base04 #5E584C
-set $base05 #705545
-set $base06 #7D8379
-set $base07 #d7c3a9
-set $base08 #1e3943
-set $base09 #ff573d
-set $base0A #9f893e
-set $base0B #cd7a56
-set $base0C #857657
-set $base0D #9d6b4d
-set $base0E #9fba8d
-set $base0F #ffffdd
-set $active #a36144
-set $inactive #0F1C21
+set $base00 #282a2e
+set $base01 #a54242
+set $base02 #8c9440
+set $base03 #de935f
+set $base04 #5f819d
+set $base05 #85678f
+set $base06 #5e8d87
+set $base07 #a7b3c5
+set $base08 #3a3d43
+set $base09 #e54646
+set $base0A #c1ce45
+set $base0B #ffbb66
+set $base0C #6ba9dc
+set $base0D #b475c9
+set $base0E #6ac6ba
+set $base0F #cadae9
+set $active #d0902f
+#set $active #a15501
+set $inactive #282a2e
 set $RED #FF0000
 #set $cool #32BC60
 
@@ -46,7 +47,7 @@ set $RED #FF0000
 floating_modifier $mod
 
 # Terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # Kill Window
 bindsym $mod+Shift+q kill
@@ -215,6 +216,7 @@ client.urgent 			$base0C  $base0C $base0A  $base08
     exec imwheel
 	exec xrandr --output $PRIMARY_SCREEN --primary --mode 1920x1080 --rate 143.98
     exec xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1
+    exec setxkbmap -layout us,gr -option grp:alt_caps_toggle
     exec_always --no-startup-id ~/.config/i3/alternating_layouts.py
 
 	exec_always pulseeffects --gapplication-service

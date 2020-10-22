@@ -2,6 +2,8 @@ function aliases {
     alias ls=exa                                                                   
     alias l='ls -l'                                                                
     alias ll='ls -al'                                                              
+
+    alias cat='bat -n --theme OneHalfDark'
                                                                                    
     alias vim=nvim                                                                 
     alias vi=nvim                                                                  
@@ -43,4 +45,7 @@ PS1="%F{yellow}%n%F{green}:%F{blue}%1~%f%F{red}[]%f"$'\n'"%F{green}:: %f"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-export PATH=”~/.emacs.d/bin:$PATH”
+export PATH=~/.emacs.d/bin/:$PATH
+# export PATH="/opt/anaconda/bin:$PATH"  # commented out by conda initialize
+#
+eval $(starship init zsh)
