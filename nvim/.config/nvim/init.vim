@@ -15,6 +15,7 @@ set showcmd
 set encoding=utf-8
 set signcolumn=number
 
+set inccommand=nosplit
 set incsearch
 set title
 set noswapfile
@@ -37,13 +38,14 @@ set fillchars+=vert:│
 
 set nowrap
 set linebreak
+set clipboard=unnamedplus
 
 if has('mouse')
     set mouse=nv  " Enable mouse in several mode
     set mousemodel=popup  " Set the behaviour of mouse
 endif
 
-set guifont=mononoki\ Nerd\ Font\ Mono:h18
+set guifont=mononoki\ Nerd\ Font\ Mono:h20
 
 let g:polyglot_disabled = ['autoindent']
 
@@ -57,18 +59,15 @@ endif
 
 call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
 Plug 'MineBill/vim-colors'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'rakr/vim-one'
-Plug 'deviantfero/wpgtk.vim'
-Plug 'jaredgorski/spacecamp'
-"Plug 'embark-theme/vim', { 'as': 'embark' }
-"Plug 'arcticicestudio/nord-vim'
-"Plug 'reewr/vim-monokai-phoenix'
-"Plug 'Badacadabra/vim-archery'
 
 Plug 'shougo/unite.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'MineBill/vim-cmake'
+Plug 'moll/vim-bbye'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vlime/vlime', {'rtp': 'vim/'}
+Plug 'itmecho/bufterm.nvim'
 
 " === Visual ===
 Plug 'junegunn/goyo.vim'
@@ -93,6 +92,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':let coc_enabled=1'}
 Plug 'sheerun/vim-polyglot'
 "Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
 "Plug 'neovim/nvim-lspconfig'
 "Plug 'steelsojka/completion-buffers'
 "Plug 'nvim-lua/diagnostic-nvim'
@@ -114,7 +114,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
 "let g:airline_symbols = { '∫' }
-hi VertSplit ctermbg=NONE guibg=NONE
+"hi VertSplit ctermbg=NONE guibg=NONE
 
 " === Limelight ===
 let g:limelight_conceal_ctermfg = 'gray'
@@ -133,19 +133,31 @@ set completeopt=menuone,noinsert,noselect
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
 
 
-" === Vim-Rainbow ===
-let g:rainbow_active = 1
-
-
 " === Emmet Settings ===
 let g:user_emmet_leader_key = ','
 
 
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    use_languagetree = false, -- Use this to enable language injection (this is very unstable)
+  },
+}
+EOF
+
+
 " === Key binds ===
 let mapleader = " "
+let maplocalleader = "\\"
 inoremap fd <Esc>
 nnoremap ; :
 nnoremap : ;
+
+nnoremap J <Nop>
+nnoremap K <Nop>
+vnoremap J <Nop>
+vnoremap K <Nop>
 
 nnoremap <Leader>fed :e $MYVIMRC<CR>
 nnoremap <Leader>feR :source $MYVIMRC<CR>
@@ -169,11 +181,12 @@ nnoremap <Leader>s" diwi""<Esc>hp
 nnoremap <Leader>s' diwi''<Esc>hp
 "' inoremap <C-O> <Esc><S-O>
 
-nnoremap <Leader>b :Unite buffer<CR>
-nnoremap <Leader>f :Unite file<CR>
+"nnoremap <Leader>b :Unite buffer<CR>
+"nnoremap <Leader>f :Unite file<CR>
 
-" === NERD Keybinds ===
-nnoremap <Leader>of :FZF<CR>
+" === File operations ===
+nnoremap <Leader>fo :FZF<CR>
+nnoremap <Leader>fw :w<CR>
 
 
 " === Autocomplete window (CoC) ===
@@ -187,15 +200,33 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <C-[> <Plug>(coc-diagnostic-prev)
 nmap <silent> <C-]> <Plug>(coc-diagnostic-next)
-"nnoremap <C-[> <Plug>(coc-diagnostic-prev)
-"nnoremap <C-]> <Plug>(coc-diagnostic-next)
 
 
-nnoremap <Leader>ss :mksession ./.vim-session
-nnoremap <Leader>ls :source ./.vim-session
+" === CMake Keybinds ===
+nnoremap <Leader>cg :CMakeGenerate<CR>
+nnoremap <Leader>cb :CMakeBuild<CR>
+nnoremap <Leader>cc :CMakeClean<CR>
+nnoremap <Leader>co :CMakeOpen<CR>
+
+
+" === Git Keybinds ===
+nnoremap <Leader>gs :Git status<CR>
+nnoremap <Leader>ga :Git add
+nnoremap <Leader>gA :Git add -A<CR>
+nnoremap <Leader>gc :Git commit<CR>
+
+
+nnoremap <Leader>bd :Bd<CR>
+
+
+function! FormatCppOnSave()
+    let l:formatdiff = 1
+    pyf /usr/share/clang/clang-format.py
+endfunction
 
 
 " === Autocommands ===
+autocmd BufWritePre *.hpp,*.h,*.cc,*.cpp call FormatCppOnSave()
 augroup HighlightYank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
@@ -209,7 +240,30 @@ augroup ZenMode
 augroup END
 
 
-augroup Coc
+augroup CMake
     autocmd!
-    autocmd User CocNvimInit echom "COC INITIALIZED"
+    autocmd User CMakeCommandOk call cmake#console#Close()
 augroup END
+
+" Terminal Function
+let g:term_buf = 0
+let g:term_win = 0
+function! TermToggle(height)
+    if win_gotoid(g:term_win)
+        hide
+    else
+        botright new __term__
+        exec "resize " . a:height
+        try
+            exec "buffer " . g:term_buf
+        catch
+            call termopen($SHELL, {"detach": 0})
+            let g:term_buf = bufnr("")
+            setlocal hidden bufhidden=wipe nobuflisted nolist noswapfile nowrap cursorline nospell nonu norelativenumber winfixheight nomodifiable
+        endtry
+        startinsert!
+        let g:term_win = win_getid()
+    endif
+endfunction
+
+nnoremap <Leader>tt <CMD>BufTermToggle<CR>
