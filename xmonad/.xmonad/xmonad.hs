@@ -1,20 +1,25 @@
 import System.Exit
-import Control.Monad (forM_, join)
+import Control.Monad (forM_, join, when)
 
 import Data.Monoid
 import Data.List (sortBy)
 import Data.Function (on)
+import Data.Maybe (maybeToList)
 
 import XMonad
+import XMonad.Config.Desktop
 import XMonad.Util.Run (safeSpawn)
 import XMonad.Util.NamedWindows (getName)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Gaps
+import XMonad.Layout.Grid
 import XMonad.Layout.Spacing
+import XMonad.Layout.CenteredMaster
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -180,7 +185,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayoutHook = spacingRaw True (Border 0 0 0 0) False (Border  5 5 5 5) True $ avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayoutHook = spacingRaw True (Border 0 0 0 0) False (Border  5 5 5 5) True $ avoidStruts (tiled ||| Full)
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
@@ -214,11 +219,12 @@ myManageHook = composeAll
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
+    , isFullscreen --> doFullFloat
     , manageDocks ]
 
 ------------------------------------------------------------------------
 -- Event handling
-myEventHook = mempty
+--myEventHook = mempty
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -275,6 +281,22 @@ dbusOutput dbus str = do
 myStartupHook = do
     spawn "~/init.sh"
 
+addNETSupported :: Atom -> X ()
+addNETSupported x   = withDisplay $ \dpy -> do
+    r               <- asks theRoot
+    a_NET_SUPPORTED <- getAtom "_NET_SUPPORTED"
+    a               <- getAtom "ATOM"
+    liftIO $ do
+        sup <- (join . maybeToList) <$> getWindowProperty32 dpy a_NET_SUPPORTED r
+        when (fromIntegral x `notElem` sup) $
+           changeProperty32 dpy r a_NET_SUPPORTED a propModeAppend [fromIntegral x]
+
+addEWMHFullscreen :: X ()
+addEWMHFullscreen   = do
+    wms <- getAtom "_NET_WM_STATE"
+    wfs <- getAtom "_NET_WM_STATE_FULLSCREEN"
+    mapM_ addNETSupported [wms, wfs]
+
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 main :: IO ()
@@ -305,9 +327,9 @@ defaults dbus = defaultConfig {
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
-        layoutHook         = myLayoutHook,
+        layoutHook         = smartBorders $ myLayoutHook,
         manageHook         = myManageHook <+> manageHook def,
-        handleEventHook    = myEventHook,
+        handleEventHook    = handleEventHook def <+> fullscreenEventHook,
         logHook            = myDynamicLogHook dbus,
-        startupHook        = myStartupHook
+        startupHook        = myStartupHook >> addEWMHFullscreen
     } 
