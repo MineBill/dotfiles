@@ -18,14 +18,20 @@ function aliases {
     alias v3='vim ~/.config/i3/config'                                             
     alias vb='vim ~/.bashrc'                                                       
     alias vz='vim ~/.zshrc'                                                        
+    alias vh='vim ~/.xmonad/xmonad.hs'
     alias vba='vim ~/.bash_aliases'                                                
     alias vza='vim ~/.zsh_aliases'                                                 
                                                                                    
     alias d='cd ~/.dotfiles'
 
     alias gs='git status'
+
+    alias hg='cat ~/.zsh_history | grep'
 }
 aliases
+
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
 
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
@@ -37,9 +43,11 @@ compinit
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 export PATH=~/.emacs.d/bin/:$PATH
 export FZF_DEFAULT_COMMAND="rg --files"
+export EDITOR="nvim"
 
 # === Vim Mode ===
 VIM_MODE_VICMD_KEY='fd'
@@ -53,3 +61,5 @@ MODE_INDICATOR_VLINE='%F{12}<%F{4}V-LINE<%f'
 
 # === Start starship
 eval $(starship init zsh)
+
+figlet -t -f small "Welcome, minebill" | lolcat

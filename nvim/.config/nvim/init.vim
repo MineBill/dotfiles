@@ -5,6 +5,7 @@
 " | |  | | | | | |  __/ |_/ / | | |
 " \_|  |_/_|_| |_|\___\____/|_|_|_| 
 " === Basic nvim Configuration ===
+set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz
 filetype plugin indent on
 syntax on
 set hidden
@@ -58,50 +59,55 @@ if has('vim_starting')
 endif
 
 call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
-Plug 'MineBill/vim-colors'
-Plug 'rakr/vim-one'
+    Plug 'MineBill/vim-colors'
+    Plug 'rakr/vim-one'
 
-Plug 'shougo/unite.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'MineBill/vim-cmake'
-Plug 'moll/vim-bbye'
-Plug 'ryanoasis/vim-devicons'
-Plug 'vlime/vlime', {'rtp': 'vim/'}
-Plug 'itmecho/bufterm.nvim'
+    Plug 'shougo/unite.vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'MineBill/vim-cmake'
+    Plug 'moll/vim-bbye'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'vlime/vlime', {'rtp': 'vim/'}
+    Plug 'itmecho/bufterm.nvim'
+    Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+    Plug 'sainnhe/sonokai'
+    "Plug 'TaDaa/vimade'
 
-" === Visual ===
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-"Plug 'ap/vim-buftabline'
-Plug 'voldikss/vim-floaterm'
-Plug 'vim-airline/vim-airline'
-"Plug 'itchyny/lightline.vim'
-
-
-" === Functional ===
-Plug 'mattn/emmet-vim'
-Plug 'preservim/nerdcommenter'
-Plug 'airblade/vim-rooter'
-Plug 'jiangmiao/auto-pairs'
-Plug 'preservim/nerdtree'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':let coc_enabled=1'}
+    " === Visual ===
+    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/limelight.vim'
+    "Plug 'ap/vim-buftabline'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'vim-airline/vim-airline'
+    "Plug 'itchyny/lightline.vim'
 
 
-" === Languages ===
-Plug 'sheerun/vim-polyglot'
-"Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
-"Plug 'neovim/nvim-lspconfig'
-"Plug 'steelsojka/completion-buffers'
-"Plug 'nvim-lua/diagnostic-nvim'
+    Plug 'https://github.com/MineBill/coc-cord', {'branch': 'logging', 'do': 'yarn install --frozen-lockfile && yarn build'}
 
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+    " === Functional ===
+    Plug 'mattn/emmet-vim'
+    Plug 'preservim/nerdcommenter'
+    Plug 'airblade/vim-rooter'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'preservim/nerdtree'
+    Plug 'editorconfig/editorconfig-vim'
+    Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':let coc_enabled=1'}
+
+
+    " === Languages ===
+    Plug 'sheerun/vim-polyglot'
+    "Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'nvim-lua/completion-nvim'
+    Plug 'nvim-treesitter/nvim-treesitter'
+    "Plug 'neovim/nvim-lspconfig'
+    "Plug 'steelsojka/completion-buffers'
+    "Plug 'nvim-lua/diagnostic-nvim'
+
+    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } 
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
-colorscheme one
-"colorscheme wpgtkAlt
+colorscheme sonokai
 
 " === === ===  ===
 " === Settings ===
@@ -113,8 +119,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
-"let g:airline_symbols = { '∫' }
-"hi VertSplit ctermbg=NONE guibg=NONE
 
 " === Limelight ===
 let g:limelight_conceal_ctermfg = 'gray'
@@ -127,10 +131,8 @@ let g:NERDTreeWinSize = 25
 " === Completion ===
 inoremap <expr><Tab>   pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-P>" : "\<Tab>"
-
-set completeopt=menuone,noinsert,noselect
-
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
+set completeopt=menuone,noinsert,noselect
 
 
 " === Emmet Settings ===
@@ -147,7 +149,7 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 
-" === Key binds ===
+"{{ === Key binds ===
 let mapleader = " "
 let maplocalleader = "\\"
 inoremap fd <Esc>
@@ -217,7 +219,9 @@ nnoremap <Leader>gc :Git commit<CR>
 
 
 nnoremap <Leader>bd :Bd<CR>
+nnoremap <Leader>r :RnvimrToggle<CR>
 
+" }}
 
 function! FormatCppOnSave()
     let l:formatdiff = 1
@@ -227,6 +231,7 @@ endfunction
 
 " === Autocommands ===
 autocmd BufWritePre *.hpp,*.h,*.cc,*.cpp call FormatCppOnSave()
+
 augroup HighlightYank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
@@ -245,7 +250,7 @@ augroup CMake
     autocmd User CMakeCommandOk call cmake#console#Close()
 augroup END
 
-" Terminal Function
+" VSCode-like popup terminal
 let g:term_buf = 0
 let g:term_win = 0
 function! TermToggle(height)
@@ -267,3 +272,4 @@ function! TermToggle(height)
 endfunction
 
 nnoremap <Leader>tt <CMD>BufTermToggle<CR>
+tnoremap <Esc> <C-\><C-n>

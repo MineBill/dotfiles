@@ -5,7 +5,6 @@ if [[ $? == 0 ]]; then
     case $action in
         logout)
             i3-msg exit
-            bspc quit
             ;;
         shutdown)
             shutdown now
