@@ -12,9 +12,9 @@ import XMonad.Util.Run (safeSpawn)
 import XMonad.Util.NamedWindows (getName)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ServerMode
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Gaps
 import XMonad.Layout.Grid
@@ -62,7 +62,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_p     ), spawn "rofi -show drun -theme custom -icon-theme \"Numix\" -show-icons")
 
     -- launch rofi
-    , ((modm .|. shiftMask, xK_p     ), spawn "")
+    , ((modm .|. shiftMask, xK_p     ), spawn "~/scripts/get_passwd.sh")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_q     ), kill)
@@ -118,7 +118,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
     --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+    --, ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_e     ), spawn "~/scripts/exit_i3.sh")
@@ -311,25 +311,24 @@ main = do
     xmonad $ ewmh $ docks $ defaults (dbus)
 
 defaults dbus = defaultConfig {
-      -- simple stuff
-        terminal           = myTerminal,
-        focusFollowsMouse  = myFocusFollowsMouse,
-        borderWidth        = myBorderWidth,
-        modMask            = myModMask,
-        -- numlockMask deprecated in 0.9.1
-        -- numlockMask        = myNumlockMask,
-        workspaces         = myWorkspaces,
-        normalBorderColor  = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
+      terminal           = myTerminal
+    , focusFollowsMouse  = myFocusFollowsMouse
+    , borderWidth        = myBorderWidth
+    , modMask            = myModMask
+    , workspaces         = myWorkspaces
+    , normalBorderColor  = myNormalBorderColor
+    , focusedBorderColor = myFocusedBorderColor
 
-      -- key bindings
-        keys               = myKeys,
-        mouseBindings      = myMouseBindings,
+    , keys               = myKeys
+    , mouseBindings      = myMouseBindings
 
-      -- hooks, layouts
-        layoutHook         = smartBorders $ myLayoutHook,
-        manageHook         = myManageHook <+> manageHook def,
-        handleEventHook    = handleEventHook def <+> fullscreenEventHook,
-        logHook            = myDynamicLogHook dbus,
-        startupHook        = myStartupHook >> addEWMHFullscreen
+    , layoutHook         = smartBorders $ myLayoutHook
+    , manageHook         = myManageHook <+> manageHook def
+    , handleEventHook    = handleEventHook def 
+                            <+> fullscreenEventHook
+                            <+> serverModeEventHookCmd
+                            <+> serverModeEventHook
+                            <+> serverModeEventHookF "XMONAD_PRINT" (io . putStrLn)
+    , logHook            = myDynamicLogHook dbus
+    , startupHook        = myStartupHook >> addEWMHFullscreen
     } 

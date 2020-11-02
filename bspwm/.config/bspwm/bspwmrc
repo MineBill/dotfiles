@@ -36,12 +36,5 @@ bspc config single_monocle        false
 
 [[ ! $(pidof -x sxhkd) ]] && sxhkd &
 
-lxsession &
-pulseeffects --gapplication-service &
-nitrogen --restore &
-picom --experimental-backends &
-xset r rate 250 50 &
-~/.config/polybar/launch.sh &
-xrandr --output HDMI-0 --primary --mode 1920x1080 --rate 143.98 &
-xinput --set-prop 9 'libinput Accel Profile Enabled' 0, 1 &
+~/init.sh
  # vim: set ft=sh:

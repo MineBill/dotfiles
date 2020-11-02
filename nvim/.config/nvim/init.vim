@@ -71,6 +71,7 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
     Plug 'itmecho/bufterm.nvim'
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
     Plug 'sainnhe/sonokai'
+    Plug 'glepnir/zephyr-nvim'
     "Plug 'TaDaa/vimade'
 
     " === Visual ===
@@ -107,7 +108,7 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } 
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
-colorscheme sonokai
+colorscheme zephyr
 
 " === === ===  ===
 " === Settings ===
@@ -119,6 +120,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
+
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 
 " === Limelight ===
 let g:limelight_conceal_ctermfg = 'gray'
