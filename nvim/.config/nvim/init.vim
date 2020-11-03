@@ -94,13 +94,14 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
     Plug 'preservim/nerdtree'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':let coc_enabled=1'}
+    Plug 'bkad/CamelCaseMotion'
 
 
     " === Languages ===
     Plug 'sheerun/vim-polyglot'
-    "Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'nvim-lua/completion-nvim'
     Plug 'nvim-treesitter/nvim-treesitter'
+    Plug 'dense-analysis/ale'
     "Plug 'neovim/nvim-lspconfig'
     "Plug 'steelsojka/completion-buffers'
     "Plug 'nvim-lua/diagnostic-nvim'
@@ -120,9 +121,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
-
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
+
+let g:camelcasemotion_key = "<Leader>"
 
 " === Limelight ===
 let g:limelight_conceal_ctermfg = 'gray'
@@ -137,6 +139,10 @@ inoremap <expr><Tab>   pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-P>" : "\<Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
 set completeopt=menuone,noinsert,noselect
+
+
+" === Ale Options ===
+let g:ale_haskell_ghc_options = "-fno-code -v0 -dynamic"
 
 
 " === Emmet Settings ===
@@ -204,8 +210,14 @@ noremap <C-Tab> :bp<CR>
 nnoremap <silent> gh :call CocActionAsync('doHover')<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> <C-[> <Plug>(coc-diagnostic-prev)
-nmap <silent> <C-]> <Plug>(coc-diagnostic-next)
+"nmap <silent> <C-[> <Plug>(coc-diagnostic-prev)
+"nmap <silent> <C-]> <Plug>(coc-diagnostic-next)
+nmap <silent> <C-[> <Plug>(ale_previous_wrap)
+nmap <silent> <C-]> <Plug>(ale_next_wrap)
+
+
+" === ALE Keybinds ===
+nnoremap <Leader>ad :ALEDetail<CR>
 
 
 " === CMake Keybinds ===
