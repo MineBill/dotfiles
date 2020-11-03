@@ -8,18 +8,21 @@ import Data.Maybe (maybeToList)
 
 import XMonad
 import XMonad.Config.Desktop
+
 import XMonad.Util.Run (safeSpawn)
 import XMonad.Util.NamedWindows (getName)
+import XMonad.Util.NamedScratchpad
+
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ServerMode
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Gaps
 import XMonad.Layout.Grid
 import XMonad.Layout.Spacing
-import XMonad.Layout.CenteredMaster
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -53,73 +56,35 @@ myFocusedBorderColor = "#ff0000"
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-    -- launch a terminal
     [ ((modm , xK_Return), spawn $ XMonad.terminal conf)
-
     , ((modm,               xK_c     ), spawn "CM_LAUNCHER=rofi clipmenu -theme custom")
-
-    -- launch rofi
     , ((modm,               xK_p     ), spawn "rofi -show drun -theme custom -icon-theme \"Numix\" -show-icons")
-
-    -- launch rofi
-    , ((modm .|. shiftMask, xK_p     ), spawn "~/scripts/get_passwd.sh")
-
-    -- close focused window
-    , ((modm .|. shiftMask, xK_q     ), kill)
-
-     -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
-
-    --  Reset the layouts on the current workspace to default
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
-
-    -- Resize viewed windows to the correct size
     , ((modm,               xK_n     ), refresh)
-
-    -- Move focus to the next window
     , ((modm,               xK_Tab   ), windows W.focusDown)
-
-    -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
-
-    -- Move focus to the previous window
     , ((modm,               xK_k     ), windows W.focusUp  )
-
-    -- Move focus to the master window
     , ((modm,               xK_m     ), windows W.focusMaster  )
-
-    -- Swap the focused window and the master window
-    , ((modm .|. shiftMask, xK_Return), windows W.swapMaster)
-
-    -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
-
-    -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
-
-    -- Shrink the master area
     , ((modm,               xK_h     ), sendMessage Shrink)
-
-    -- Expand the master area
     , ((modm,               xK_l     ), sendMessage Expand)
-
-    -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
-
-    -- Increment the number of windows in the master area
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
-
-    -- Deincrement the number of windows in the master area
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
 
+    , ((modm .|. shiftMask, xK_p     ), spawn "~/scripts/get_passwd.sh")
+    , ((modm .|. shiftMask, xK_q     ), kill)
+    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
+    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
+    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+    , ((modm .|. shiftMask, xK_Return), windows W.swapMaster)
     , ((modm .|. shiftMask, xK_Delete), io (exitWith ExitSuccess))
+
+    , ((modm .|. controlMask .|. shiftMask, xK_m), namedScratchpadAction scratchpads "ncmpcpp")
+    , ((modm .|. controlMask .|. shiftMask, xK_n), namedScratchpadAction scratchpads "newsboat")
+    , ((modm .|. controlMask .|. shiftMask, xK_b), namedScratchpadAction scratchpads "btm")
 
     , ((0, xK_Print), spawn "flameshot gui")
 
-    -- Toggle the status bar gap
-    -- Use this binding with avoidStruts from Hooks.ManageDocks.
-    -- See also the statusBar function from Hooks.DynamicLog.
-    --
     --, ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
@@ -150,6 +115,36 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         -- | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         -- , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
+scratchpads = 
+    [ NS "ncmpcpp"  spawnNcmpcpp  findNcmpcpp  manageNcmpcpp
+    , NS "btm"      spawnBtm      findBtm      manageBtm
+    , NS "newsboat" spawnNewsboat findNewsboat manageNewsboat
+    ]
+    where
+        spawnNcmpcpp  = myTerminal ++ " --class ncmpcpp ncmpcpp"
+        findNcmpcpp   = className =? "ncmpcpp"
+        manageNcmpcpp = customFloating $ W.RationalRect l t w h
+                        where
+                            h = 0.9
+                            w = 0.9
+                            t = 0.95 - h
+                            l = 0.95 - w
+        spawnBtm  = myTerminal ++ " --class btm btm"
+        findBtm   = className =? "btm"
+        manageBtm = customFloating $ W.RationalRect l t w h
+                        where
+                            h = 0.9
+                            w = 0.9
+                            t = 0.95 - h
+                            l = 0.95 - w
+        spawnNewsboat  = myTerminal ++ " --class newsboat newsboat"
+        findNewsboat   = className =? "newsboat"
+        manageNewsboat = customFloating $ W.RationalRect l t w h
+                        where
+                            h = 0.9
+                            w = 0.9
+                            t = 0.95 - h
+                            l = 0.95 - w
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
@@ -217,11 +212,11 @@ myLayoutHook = spacingRaw True (Border 0 0 0 0) False (Border  5 5 5 5) True $ a
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
-    , className =? "Gimp"           --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore
-    , isFullscreen --> doFullFloat
+    [ className =? "discord"                   --> doShift "8"
+    , className =? "Microsoft Teams - Preview" --> doShift "7"
+    , resource  =? "desktop_window"            --> doIgnore
+    , resource  =? "kdesktop"                  --> doIgnore
+    --, isFullscreen --> doFullFloat
     , manageDocks ]
 
 ------------------------------------------------------------------------
@@ -312,7 +307,7 @@ main = do
 
     xmonad $ ewmh $ docks $ defaults (dbus)
 
-defaults dbus = defaultConfig {
+defaults dbus = def {
       terminal           = myTerminal
     , focusFollowsMouse  = myFocusFollowsMouse
     , borderWidth        = myBorderWidth
@@ -325,7 +320,7 @@ defaults dbus = defaultConfig {
     , mouseBindings      = myMouseBindings
 
     , layoutHook         = smartBorders $ myLayoutHook
-    , manageHook         = myManageHook <+> manageHook def
+    , manageHook         = myManageHook <+> namedScratchpadManageHook scratchpads <+> manageHook def
     , handleEventHook    = handleEventHook def 
                             <+> fullscreenEventHook
                             <+> serverModeEventHookCmd
