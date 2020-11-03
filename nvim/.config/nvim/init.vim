@@ -36,6 +36,7 @@ set expandtab
 set termguicolors
 set colorcolumn=140
 set fillchars+=vert:│
+set foldmethod=marker
 
 set nowrap
 set linebreak
@@ -46,7 +47,7 @@ if has('mouse')
     set mousemodel=popup  " Set the behaviour of mouse
 endif
 
-set guifont=mononoki\ Nerd\ Font\ Mono:h20
+set guifont=InconsolataLGC\ Nerd\ Font\ Mono:h22
 
 let g:polyglot_disabled = ['autoindent']
 
@@ -109,7 +110,7 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } 
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
-colorscheme zephyr
+colorscheme sonokai
 
 " === === ===  ===
 " === Settings ===
