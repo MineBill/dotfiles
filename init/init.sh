@@ -11,6 +11,7 @@ xset r rate $KEY_REPEAT_DELAY_MS $KEY_REPEAT_RATE_HZ
 setxkbmap -layout us,gr -option grp:alt_caps_toggle
 
 
+mpd
 nitrogen --restore
 /usr/lib/notification-daemon-1.0/notification-daemon &
 lxsession &
