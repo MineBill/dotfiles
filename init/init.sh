@@ -13,7 +13,7 @@ setxkbmap -layout us,gr -option grp:alt_caps_toggle
 
 mpd
 nitrogen --restore
-/usr/lib/notification-daemon-1.0/notification-daemon &
+dunst
 lxsession &
 clipmenud &
 picom --experimental-backends &
