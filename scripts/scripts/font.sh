@@ -14,7 +14,7 @@ else
         echo "$INSTALL_LOCATION does not exist"
         echo "Should i create it(Y/n)?"
         read $ans
-        and=${ans:y}
+        and=${ans:-y}
         case $ans in
             y)
                 mkdir -p $INSTALL_LOCATION
