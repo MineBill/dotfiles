@@ -50,6 +50,7 @@ if has('mouse')
 endif
 
 set guifont=InconsolataLGC\ Nerd\ Font\ Mono:h21
+let g:polyglot_disabled = ['autoindent']
 " }}}
 
 " Plugins {{{
@@ -117,7 +118,6 @@ call plug#end()
 colorscheme one
 set completeopt=menuone,noinsert,noselect
 
-let g:polyglot_disabled = ['autoindent']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
