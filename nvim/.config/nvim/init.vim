@@ -1,10 +1,12 @@
-" ___  ____           ______ _ _ _ 
-" |  \/  (_)          | ___ (_) | |
-" | .  . |_ _ __   ___| |_/ /_| | |
-" | |\/| | | '_ \ / _ \ ___ \ | | |
-" | |  | | | | | |  __/ |_/ / | | |
-" \_|  |_/_|_| |_|\___\____/|_|_|_| 
-" === Basic nvim Configuration ===
+"  __  __ _            ____  _ _ _ 
+" |  \/  (_)_ __   ___| __ )(_) | |
+" | |\/| | | '_ \ / _ \  _ \| | | |
+" | |  | | | | | |  __/ |_) | | | |
+" |_|  |_|_|_| |_|\___|____/|_|_|_|
+" MineBill's neovim configuration file
+" Last edit: Wed Nov  4 09:59:58 AM EET 2020
+
+" Vim Settings {{{
 set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz
 filetype plugin indent on
 syntax on
@@ -48,12 +50,9 @@ if has('mouse')
 endif
 
 set guifont=InconsolataLGC\ Nerd\ Font\ Mono:h22
+" }}}
 
-let g:polyglot_disabled = ['autoindent']
-
-" === === === ===
-" === Plugins ===
-" === === === ===
+" Plugins {{{
 
 if has('vim_starting')
  set runtimepath+=~/.config/nvim
@@ -85,6 +84,7 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
 
 
     Plug 'https://github.com/MineBill/coc-cord', {'branch': 'logging', 'do': 'yarn install --frozen-lockfile && yarn build'}
+    Plug 'mhinz/vim-startify'
 
 
     " === Functional ===
@@ -110,45 +110,34 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } 
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
-colorscheme sonokai
+" }}}
 
-" === === ===  ===
-" === Settings ===
-" === === ===  ===
+" Settings {{{
 
 " === Generic ===
-"let g:polyglot_disabled = ['autoindent']
+colorscheme zephyr
+set completeopt=menuone,noinsert,noselect
+
+let g:polyglot_disabled = ['autoindent']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-
 let g:camelcasemotion_key = "<Leader>"
-
-" === Limelight ===
 let g:limelight_conceal_ctermfg = 'gray'
-
-
-" === NERD Tree Settings ===
 let g:NERDTreeWinSize = 25
-
-
-" === Completion ===
-inoremap <expr><Tab>   pumvisible() ? "\<C-N>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-P>" : "\<Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
-set completeopt=menuone,noinsert,noselect
-
-
-" === Ale Options ===
 let g:ale_haskell_ghc_options = "-fno-code -v0 -dynamic"
-
-
-" === Emmet Settings ===
 let g:user_emmet_leader_key = ','
 
+let g:startify_custom_header = [
+            \ '__        __   _                          ',
+            \ '\ \      / /__| | ___ ___  _ __ ___   ___ ',
+            \ ' \ \ /\ / / _ \ |/ __/ _ \| ''_ ` _ \ / _ \',
+            \ '  \ V  V /  __/ | (_| (_) | | | | | |  __/',
+            \ '   \_/\_/ \___|_|\___\___/|_| |_| |_|\___|'
+            \]
 
 lua << EOF
 require'nvim-treesitter.configs'.setup {
@@ -159,8 +148,9 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+" }}}
 
-"{{ === Key binds ===
+" Keybinds {{{
 let mapleader = " "
 let maplocalleader = "\\"
 inoremap fd <Esc>
@@ -192,43 +182,43 @@ nnoremap <Leader>s< diwi<><Esc>hp
 nnoremap <Leader>s[ diwi[]<Esc>hp
 nnoremap <Leader>s" diwi""<Esc>hp
 nnoremap <Leader>s' diwi''<Esc>hp
-"' inoremap <C-O> <Esc><S-O>
 
-"nnoremap <Leader>b :Unite buffer<CR>
-"nnoremap <Leader>f :Unite file<CR>
 
-" === File operations ===
+" File operations
 nnoremap <Leader>fo :FZF<CR>
 nnoremap <Leader>fw :w<CR>
 
 
-" === Autocomplete window (CoC) ===
+" Autocomplete window (CoC)
+inoremap <expr><Tab>   pumvisible() ? "\<C-N>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-P>" : "\<Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
 noremap <S-Tab> :bn<CR>
 noremap <C-Tab> :bp<CR>
 
 
-" === CoC Keybinds ===
+" CoC Keybinds
 nnoremap <silent> gh :call CocActionAsync('doHover')<CR>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
+nmap     <silent> gd <Plug>(coc-definition)
+nmap     <silent> gr <Plug>(coc-references)
 "nmap <silent> <C-[> <Plug>(coc-diagnostic-prev)
 "nmap <silent> <C-]> <Plug>(coc-diagnostic-next)
-nmap <silent> <C-[> <Plug>(ale_previous_wrap)
-nmap <silent> <C-]> <Plug>(ale_next_wrap)
 
 
-" === ALE Keybinds ===
+" ALE Keybinds
 nnoremap <Leader>ad :ALEDetail<CR>
+nmap     <silent> <C-[> <Plug>(ale_previous_wrap)
+nmap     <silent> <C-]> <Plug>(ale_next_wrap)
 
 
-" === CMake Keybinds ===
+" CMake Keybinds
 nnoremap <Leader>cg :CMakeGenerate<CR>
 nnoremap <Leader>cb :CMakeBuild<CR>
 nnoremap <Leader>cc :CMakeClean<CR>
 nnoremap <Leader>co :CMakeOpen<CR>
 
 
-" === Git Keybinds ===
+" Git Keybinds
 nnoremap <Leader>gs :Git status<CR>
 nnoremap <Leader>ga :Git add
 nnoremap <Leader>gA :Git add -A<CR>
@@ -238,15 +228,29 @@ nnoremap <Leader>gc :Git commit<CR>
 nnoremap <Leader>bd :Bd<CR>
 nnoremap <Leader>r :RnvimrToggle<CR>
 
-" }}
+" Configuration files quicklaunch
+nnoremap <Leader>oa :e ~/.config/alacritty/alacritty.yml<CR>
+nnoremap <Leader>oq :e ~/.config/qutebrowser/config.py<CR>
+nnoremap <Leader>op :e ~/.config/polybar/config.ini<CR>
+nnoremap <Leader>ok :e ~/.config/kitty/kitty.conf<CR>
+nnoremap <Leader>o3 :e ~/.config/i3/config<CR>
+nnoremap <Leader>ob :e ~/.bashrc<CR>
+nnoremap <Leader>oz :e ~/.zshrc<CR>
+nnoremap <Leader>of :e ~/.config/fish/config.fish<CR>
+nnoremap <Leader>oh :e ~/.xmonad/xmonad.hs<CR>
+nnoremap <Leader>oba :e vim ~/.bash_aliases<CR>
+nnoremap <Leader>oza :e vim ~/.zsh_aliases<CR>
 
-function! FormatCppOnSave()
-    let l:formatdiff = 1
-    pyf /usr/share/clang/clang-format.py
-endfunction
+" Plug
+nnoremap <Leader>pi :PlugInstall<CR>
+nnoremap <Leader>pc :PlugClean<CR>
 
+" Terminal
+nnoremap <Leader>tt <CMD>BufTermToggle<CR>
+tnoremap <Esc> <C-\><C-n>
+" }}}
 
-" === Autocommands ===
+" Autocommands {{{
 autocmd BufWritePre *.hpp,*.h,*.cc,*.cpp call FormatCppOnSave()
 
 augroup HighlightYank
@@ -287,6 +291,11 @@ function! TermToggle(height)
         let g:term_win = win_getid()
     endif
 endfunction
+" }}}
 
-nnoremap <Leader>tt <CMD>BufTermToggle<CR>
-tnoremap <Esc> <C-\><C-n>
+" Functions {{{
+function! FormatCppOnSave()
+    let l:formatdiff = 1
+    pyf /usr/share/clang/clang-format.py
+endfunction
+" }}}
