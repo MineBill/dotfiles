@@ -49,7 +49,7 @@ if has('mouse')
     set mousemodel=popup  " Set the behaviour of mouse
 endif
 
-set guifont=InconsolataLGC\ Nerd\ Font\ Mono:h22
+set guifont=InconsolataLGC\ Nerd\ Font\ Mono:h21
 " }}}
 
 " Plugins {{{
@@ -61,6 +61,9 @@ endif
 call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
     Plug 'MineBill/vim-colors'
     Plug 'rakr/vim-one'
+    Plug 'sainnhe/sonokai'
+    Plug 'glepnir/zephyr-nvim'
+    Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
 
     Plug 'shougo/unite.vim'
     Plug 'tpope/vim-fugitive'
@@ -70,21 +73,17 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
     Plug 'vlime/vlime', {'rtp': 'vim/'}
     Plug 'itmecho/bufterm.nvim'
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-    Plug 'sainnhe/sonokai'
-    Plug 'glepnir/zephyr-nvim'
     "Plug 'TaDaa/vimade'
 
     " === Visual ===
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/limelight.vim'
-    "Plug 'ap/vim-buftabline'
     Plug 'voldikss/vim-floaterm'
     Plug 'vim-airline/vim-airline'
-    "Plug 'itchyny/lightline.vim'
+    Plug 'mhinz/vim-startify'
 
 
     Plug 'https://github.com/MineBill/coc-cord', {'branch': 'logging', 'do': 'yarn install --frozen-lockfile && yarn build'}
-    Plug 'mhinz/vim-startify'
 
 
     " === Functional ===
@@ -115,7 +114,7 @@ call plug#end()
 " Settings {{{
 
 " === Generic ===
-colorscheme zephyr
+colorscheme one
 set completeopt=menuone,noinsert,noselect
 
 let g:polyglot_disabled = ['autoindent']
