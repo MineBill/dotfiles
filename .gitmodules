@@ -1,0 +1,3 @@
+[submodule "mpv/.config/mpv/scripts/mpv-history"]
+	path = mpv/.config/mpv/scripts/mpv-history
+	url = https://github.com/MineBill/mpv-history
