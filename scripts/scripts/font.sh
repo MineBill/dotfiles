@@ -1,5 +1,5 @@
 #!/bin/bash
-INSTALL_LOCATION="~/.local/share/fonts/"
+INSTALL_LOCATION=~/.local/share/fonts/
 
 if [[ $# -ge 2 ]]; then
     if [[ -d "$2" ]]; then

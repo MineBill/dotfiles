@@ -65,6 +65,8 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
     Plug 'sainnhe/sonokai'
     Plug 'glepnir/zephyr-nvim'
     Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
+    Plug 'ryuta69/elly.vim'
+    Plug 'sainnhe/gruvbox-material'
 
     Plug 'shougo/unite.vim'
     Plug 'tpope/vim-fugitive'
@@ -115,7 +117,7 @@ call plug#end()
 " Settings {{{
 
 " === Generic ===
-colorscheme one
+colorscheme gruvbox-material
 set completeopt=menuone,noinsert,noselect
 
 let g:airline#extensions#tabline#enabled = 1

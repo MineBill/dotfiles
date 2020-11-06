@@ -18,13 +18,15 @@ bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
 
-color listnormal cyan default
-color listfocus black yellow standout bold
-color listnormal_unread blue default
-color listfocus_unread yellow default bold
-color info red black bold
-color article white default
+#color listnormal cyan default
+#color listfocus black yellow standout bold
+#color listfocus_unread yellow default bold
+#color info red black bold
+#color article white default
 
-browser brave-beta
+include /usr/share/doc/newsboat/contrib/colorschemes/solarized-dark
+color listnormal_unread yellow default
+
+browser "~/dev/apps/qutebrowser-ablock-git/.venv/bin/qutebrowser %u"
 macro , open-in-browser
 macro y set browser "mpv --autofit=90%x90% %u"; open-in-browser; set browser "~/dev/apps/qutebrowser-ablock-git/.venv/bin/qutebrowser %u"
