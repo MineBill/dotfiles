@@ -3,6 +3,10 @@
 ## Usage:
 `stow -vt ~ *` To stow everything or `stow -vt ~ <folder>` to stow only the specified folder
 
+## List of software i use:
+- paru:  
+    AUR helper that's based on yay and written in rust.
+
 ## Newsboat
 ### Getting count of unread items:
 One solution is using `newsboat -x print-unread` but that will fail when there is more than one instance of newsboat running.
