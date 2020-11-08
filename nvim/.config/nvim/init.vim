@@ -49,7 +49,7 @@ if has('mouse')
     set mousemodel=popup  " Set the behaviour of mouse
 endif
 
-set guifont=InconsolataLGC\ Nerd\ Font\ Mono:h21
+set guifont=FiraCode\ Nerd\ Font\ Mono:h21
 let g:polyglot_disabled = ['autoindent']
 " }}}
 
@@ -60,13 +60,19 @@ if has('vim_starting')
 endif
 
 call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
-    Plug 'MineBill/vim-colors'
+    "Plug 'MineBill/vim-colors'
+    Plug 'https://github.com/habamax/vim-gruvbit'
     Plug 'rakr/vim-one'
     Plug 'sainnhe/sonokai'
     Plug 'glepnir/zephyr-nvim'
     Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
     Plug 'ryuta69/elly.vim'
     Plug 'sainnhe/gruvbox-material'
+    Plug 'nanotech/jellybeans.vim'
+    Plug 'lucasprag/simpleblack'
+    Plug 'dikiaap/minimalist'
+    Plug 'micke/vim-hybrid'
+    Plug 'keith/parsec.vim'
 
     Plug 'shougo/unite.vim'
     Plug 'tpope/vim-fugitive'
@@ -86,7 +92,7 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
     Plug 'mhinz/vim-startify'
 
 
-    Plug 'https://github.com/MineBill/coc-cord', {'branch': 'logging', 'do': 'yarn install --frozen-lockfile && yarn build'}
+    "Plug 'https://github.com/MineBill/coc-cord', {'branch': 'logging', 'do': 'yarn install --frozen-lockfile && yarn build'}
 
 
     " === Functional ===
@@ -117,7 +123,8 @@ call plug#end()
 " Settings {{{
 
 " === Generic ===
-colorscheme gruvbox-material
+let g:gruvbox_material_background = 'medium'
+colorscheme sonokai
 set completeopt=menuone,noinsert,noselect
 
 let g:airline#extensions#tabline#enabled = 1
@@ -300,3 +307,5 @@ function! FormatCppOnSave()
     pyf /usr/share/clang/clang-format.py
 endfunction
 " }}}
+"hi Normal guibg=Black ctermbg=Black
+"hi Normal guibg=NONE ctermbg=NONE
