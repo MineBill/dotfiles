@@ -65,7 +65,8 @@ set norunexec
 " List of color schemes to try (picks the first one supported by the terminal)
 
 "colorscheme Default-256 Default
-colorscheme molokai
+"colorscheme onedark
+colorscheme palenight
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
@@ -237,6 +238,8 @@ fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
 
 " Images
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
+        \ {View in feh}
+        \ feh %f,
         \ {View in sxiv}
         \ sxiv %f,
         \ {View in gpicview}
@@ -356,6 +359,11 @@ filextype */
         \ {View in thunar}
         \ Thunar %f &,
 
+fileviewer *.iso echo "Unable to preview iso files"
+
+fileviewer *.kdbx echo "KeePassXC database file"
+
+fileviewer *[^/] bat --color=always --style="plain" --theme base16 %f
 " Syntax highlighting in preview
 "
 " Explicitly set highlight type for some extensions
@@ -369,7 +377,7 @@ filextype */
 "
 " Or leave it for automatic detection
 "
-" fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
+"fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
 
 " Displaying pictures in terminal
 "
