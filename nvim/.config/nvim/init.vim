@@ -49,7 +49,7 @@ if has('mouse')
     set mousemodel=popup  " Set the behaviour of mouse
 endif
 
-set guifont=FiraCode\ Nerd\ Font\ Mono:h21
+set guifont=mononoki\ Nerd\ Font\ Mono:h17
 let g:polyglot_disabled = ['autoindent']
 " }}}
 
@@ -73,6 +73,9 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
     Plug 'dikiaap/minimalist'
     Plug 'micke/vim-hybrid'
     Plug 'keith/parsec.vim'
+    Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+    Plug 'patstockwell/vim-monokai-tasty'
+    Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 
     Plug 'shougo/unite.vim'
     Plug 'tpope/vim-fugitive'
@@ -123,7 +126,7 @@ call plug#end()
 " Settings {{{
 
 " === Generic ===
-let g:gruvbox_material_background = 'medium'
+let g:material_theme_style = 'palenight'
 colorscheme sonokai
 set completeopt=menuone,noinsert,noselect
 
@@ -162,6 +165,8 @@ EOF
 let mapleader = " "
 let maplocalleader = "\\"
 inoremap fd <Esc>
+inoremap φδ <Esc>
+
 nnoremap ; :
 nnoremap : ;
 
