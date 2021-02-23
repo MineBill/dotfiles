@@ -58,7 +58,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     [ ((modm , xK_Return), spawn $ XMonad.terminal conf)
     , ((modm,               xK_c     ), spawn "CM_LAUNCHER=rofi clipmenu -theme custom")
-    , ((modm,               xK_p     ), spawn "rofi -show drun -theme custom -icon-theme \"Numix\" -show-icons")
+    --, ((modm,               xK_p     ), spawn "rofi -show drun -theme custom -icon-theme \"Numix\" -show-icons")
+    , ((modm,               xK_p     ), spawn "rofi -show drun")
     , ((modm,               xK_q     ), spawn "qutebrowser")
     , ((modm,               xK_space ), sendMessage NextLayout)
     , ((modm,               xK_n     ), refresh)
@@ -89,7 +90,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --, ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
-    , ((modm .|. shiftMask, xK_e     ), spawn "~/scripts/exit_i3.sh")
+    , ((modm .|. shiftMask, xK_e     ), spawn "~/scripts/powermenu.sh")
 
     -- Restart xmonad
     , ((modm .|. shiftMask, xK_r     ), spawn "xmonad --recompile; xmonad --restart")

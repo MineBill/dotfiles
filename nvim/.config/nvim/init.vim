@@ -49,7 +49,8 @@ if has('mouse')
     set mousemodel=popup  " Set the behaviour of mouse
 endif
 
-set guifont=mononoki\ Nerd\ Font\ Mono:h17
+
+set guifont=FiraCode\ Nerd\ Font\ Mono:h18
 let g:polyglot_disabled = ['autoindent']
 " }}}
 
@@ -60,22 +61,9 @@ if has('vim_starting')
 endif
 
 call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
-    "Plug 'MineBill/vim-colors'
-    Plug 'https://github.com/habamax/vim-gruvbit'
-    Plug 'rakr/vim-one'
-    Plug 'sainnhe/sonokai'
-    Plug 'glepnir/zephyr-nvim'
-    Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
-    Plug 'ryuta69/elly.vim'
-    Plug 'sainnhe/gruvbox-material'
-    Plug 'nanotech/jellybeans.vim'
-    Plug 'lucasprag/simpleblack'
-    Plug 'dikiaap/minimalist'
-    Plug 'micke/vim-hybrid'
-    Plug 'keith/parsec.vim'
-    Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-    Plug 'patstockwell/vim-monokai-tasty'
-    Plug 'sonph/onehalf', { 'rtp': 'vim/' }
+    Plug 'dracula/vim'
+    Plug 'https://github.com/sainnhe/sonokai'
+    Plug 'https://github.com/chriskempson/base16-vim'
 
     Plug 'shougo/unite.vim'
     Plug 'tpope/vim-fugitive'
@@ -85,7 +73,10 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
     Plug 'vlime/vlime', {'rtp': 'vim/'}
     Plug 'itmecho/bufterm.nvim'
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-    "Plug 'TaDaa/vimade'
+
+    Plug 'https://github.com/norcalli/nvim-colorizer.lua'
+
+    Plug 'https://github.com/el-iot/buffer-tree-explorer'
 
     " === Visual ===
     Plug 'junegunn/goyo.vim'
@@ -123,24 +114,24 @@ call plug#begin('~/.config/nvim/plugged') " === Colorschemes ===
 call plug#end()
 " }}}
 
-" Settings {{{
+" Settings {{
 
 " === Generic ===
-let g:material_theme_style = 'palenight'
-colorscheme sonokai
+colorscheme base16-gruvbox-dark-hard
 set completeopt=menuone,noinsert,noselect
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_powerline_fonts = 1
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 let g:camelcasemotion_key = "<Leader>"
 let g:limelight_conceal_ctermfg = 'gray'
 let g:NERDTreeWinSize = 25
 let g:ale_haskell_ghc_options = "-fno-code -v0 -dynamic"
 let g:user_emmet_leader_key = ','
+lua require'colorizer'.setup()
 
 let g:startify_custom_header = [
             \ '__        __   _                          ',
@@ -159,7 +150,10 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-" }}}
+let g:neovide_cursor_animation_length=0.0
+"let g:neovide_cursor_vfx_mode = "wireframe"
+
+"}}}
 
 " Keybinds {{{
 let mapleader = " "
@@ -167,17 +161,34 @@ let maplocalleader = "\\"
 inoremap fd <Esc>
 inoremap φδ <Esc>
 
+
 nnoremap ; :
 nnoremap : ;
+
 
 nnoremap J <Nop>
 nnoremap K <Nop>
 vnoremap J <Nop>
 vnoremap K <Nop>
 
+
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+
+nnoremap <C-j> <S-v><Down>
+nnoremap <C-k> <S-v><Up>
+
+vnoremap <C-j> <Down>
+vnoremap <C-k> <Up>
+
+
 nnoremap <Leader>fed :e $MYVIMRC<CR>
 nnoremap <Leader>feR :source $MYVIMRC<CR>
 nnoremap <Leader>so  :source %<CR>
+
 
 nnoremap m :NERDTreeToggle<CR>
 
@@ -203,17 +214,32 @@ nnoremap <Leader>fw :w<CR>
 
 
 " Autocomplete window (CoC)
-inoremap <expr><Tab>   pumvisible() ? "\<C-N>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-P>" : "\<Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
+"inoremap <expr><Tab>   pumvisible() ? "\<C-N>" : "\<Tab>"
+"inoremap <expr><S-Tab> pumvisible() ? "\<C-P>" : "\<Tab>"
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
 noremap <S-Tab> :bn<CR>
 noremap <C-Tab> :bp<CR>
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ?
+  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 
 " CoC Keybinds
 nnoremap <silent> gh :call CocActionAsync('doHover')<CR>
 nmap     <silent> gd <Plug>(coc-definition)
 nmap     <silent> gr <Plug>(coc-references)
+nnoremap <Leader>ca :CocAction<CR>
 "nmap <silent> <C-[> <Plug>(coc-diagnostic-prev)
 "nmap <silent> <C-]> <Plug>(coc-diagnostic-next)
 

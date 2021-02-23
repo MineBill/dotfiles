@@ -1,14 +1,14 @@
 #!/bin/bash
 
 
-selection=$(echo "Logout|Lock|Sleep|Restart|Shutdown" | rofi -sep "|" -dmenu -i -p 'Select' -theme custom)
+selection=$(echo "Logout|Lock|Sleep|Restart|Shutdown" | rofi -sep "|" -dmenu -i -p 'Select')
 
 case $selection in
     Logout)
-        wm=$(wmctrl -m | head -1 | awk '{print $1}')
+        wm=$(wmctrl -m | head -1 | awk '{print $2}')
         case wm in
             xmonad)
-                xmonadctl-exe 39
+                xmonadctl 39
                 ;;
             i3)
                 i3-msg exit
