@@ -1,12 +1,10 @@
 #!/bin/bash
-#export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 export GTK_USE_PORTAL=1
 
 KEY_REPEAT_RATE_HZ=30
 KEY_REPEAT_DELAY_MS=250
 PRIMARY_SCREEN=HDMI-0
 
-#echo "LoadTheme $SCRIPTPATH/theme.toml" > $XDG_RUNTIME_DIR/leftwm/commands.pipe
 
 #imwheel
 xrandr --output $PRIMARY_SCREEN --primary --mode 1920x1080 --rate 143.98
