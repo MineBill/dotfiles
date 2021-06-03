@@ -1,11 +1,11 @@
-/* vim:ft=css*/
+/* vim:ft=css */
 configuration {
 /*	modi: "window,run,ssh";*/
     width: 50;
     spacing: 0;
 /*	lines: 15;*/
 /*	columns: 1;*/
-    font: "Iosevka Nerd Font 12";
+    font: "JetBrains Mono 12";
 /*	bw: 1;*/
 /*	location: 0;*/
 /*	padding: 5;*/
@@ -157,9 +157,15 @@ configuration {
     spacing: 0;
     width: 500;
     height: 500;
-    background-color: #282C33;
+    background-color: #1c1c1c;
     border-color: #2e343f;
+    /*border: 5px 5px 5px 5px;*/
     text-color: #8ca0aa;
+}
+
+window {
+    border: 2px 2px 2px 2px;
+    border-color: #d700af;
 }
 
 inputbar {
@@ -173,9 +179,9 @@ prompt {
 }
 
 textbox {
-    background-color: #2e343f;
+    background-color: #1c1c1c;
     border: 0 0 1px 0;
-    border-color: #282C33;
+    border-color: #d700af;
     padding: 8px 16px;
 }
 
@@ -195,5 +201,5 @@ element {
 }
 
 element selected {
-    background-color: #2e343f;
+    background-color: #111111;
 }

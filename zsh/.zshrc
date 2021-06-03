@@ -11,18 +11,7 @@ function aliases {
                                                                                    
     alias cls=clear                                                                
                                                                                    
-    alias vv='vim ~/.config/nvim/init.vim'                                         
-    alias va='vim ~/.config/alacritty/alacritty.yml'                               
-    alias vp='vim ~/.config/polybar/config.ini'                                    
-    alias vk='vim ~/.config/kitty/kitty.conf'                                      
-    alias v3='vim ~/.config/i3/config'                                             
-    alias vb='vim ~/.bashrc'                                                       
-    alias vz='vim ~/.zshrc'                                                        
-    alias vh='vim ~/.xmonad/xmonad.hs'
-    alias vba='vim ~/.bash_aliases'                                                
-    alias vza='vim ~/.zsh_aliases'                                                 
-                                                                                   
-    alias d='cd ~/.dotfiles'
+    alias d='cd ~/git/dotfiles'
 
     alias gs='git status'
 
@@ -43,11 +32,9 @@ compinit
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-#source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 export PATH=~/.emacs.d/bin/:$PATH
 export PATH=~/.cargo/bin/:$PATH
-export PATH=~/dev/scripts/:$PATH
 export FZF_DEFAULT_COMMAND="rg --files"
 export EDITOR="nvim"
 export MANPAGER="nvim -c 'set ft=man' -"
