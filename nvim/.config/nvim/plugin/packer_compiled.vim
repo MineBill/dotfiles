@@ -62,8 +62,9 @@ time("try_loadstring definition", true)
 local function try_loadstring(s, component, name)
   local success, result = pcall(loadstring(s))
   if not success then
-    print('Error running ' .. component .. ' for ' .. name)
-    error(result)
+    vim.schedule(function()
+      vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
+    end)
   end
   return result
 end
@@ -75,9 +76,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/auto-pairs"
   },
-  ["completion-nvim"] = {
+  ["bufdelete.nvim"] = {
     loaded = true,
-    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/completion-nvim"
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/bufdelete.nvim"
+  },
+  indentLine = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/indentLine"
+  },
+  kommentary = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/kommentary"
+  },
+  ["lsp-colors.nvim"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -87,9 +100,29 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/neon"
   },
+  nerdtree = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/nerdtree"
+  },
+  ["nim.nvim"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/nim.nvim"
+  },
+  ["nnn.vim"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/nnn.vim"
+  },
+  ["nvim-base16"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/nvim-base16"
+  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+  },
+  ["nvim-compe"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -99,9 +132,41 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
+  ["one-monokai-vim"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/one-monokai-vim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+  },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  sonokai = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/sonokai"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
+  ["vim-crates"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/vim-crates"
+  },
+  ["vim-startify"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/vim-startify"
   }
 }
 

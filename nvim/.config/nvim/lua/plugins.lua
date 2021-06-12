@@ -1,8 +1,39 @@
+function plugin_config()
+    vim.g.neon_style = "doom"
+
+    require'lspconfig'.gdscript.setup{}
+    require'colorizer'.setup()
+    require'lualine'.setup({
+        options = {
+            theme = 'neon',
+            component_separators = '',
+            section_separators = ''
+        },
+        tabline = {
+            lualine_a = {},
+            lualine_b = {'branch'},
+            lualine_c = {'filename'},
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {},
+        }
+    })
+    require'nvim-treesitter.configs'.setup {
+        highlight = {
+            enable = true,
+            use_languagetree = false, -- Use this to enable language injection (this is very unstable)
+        },
+    }
+    require'nvim-web-devicons'.setup {
+        default = true;
+    }
+    require'kommentary.config'.use_extended_mappings()
+end
+
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
--- print(fn.empty(fn.glob(install_path)))
 
 if fn.empty(fn.glob(install_path)) > 0 then
   fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
@@ -17,41 +48,26 @@ return require('packer').startup(function(use)
     use {'hoob3rt/lualine.nvim'}
     use {'jiangmiao/auto-pairs'}
     use {'neovim/nvim-lspconfig'}
-    use {'nvim-lua/completion-nvim'}
-
-    require'lspconfig'.gdscript.setup{}
-    require'colorizer'.setup()
-    require('lualine').setup({
-        options = {
-            theme = 'neon'
-        }
-    })
-    require'nvim-treesitter.configs'.setup {
-      highlight = {
-        enable = true,
-        use_languagetree = false, -- Use this to enable language injection (this is very unstable)
-      },
+    use {'hrsh7th/nvim-compe'}
+    use {'folke/lsp-colors.nvim'}
+    use {'mcchrish/nnn.vim'}
+    use {'kyazdani42/nvim-web-devicons'}
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
+    use {'b3nj5m1n/kommentary'}
+    use {'mhinz/vim-crates'}
+    use {'mhinz/vim-startify'}
+    use {'alaviss/nim.nvim'}
+    use {'fratajczak/one-monokai-vim'}
+    use {'preservim/nerdtree'}
+    use {'RRethy/nvim-base16'}
+    use {'sainnhe/sonokai'}
+    use {'famiu/bufdelete.nvim'}
+    use {'Yggdroot/indentLine'}
 
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local opts = { noremap=true, silent=true }
-
-    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    plugin_config()
 end)
+
 

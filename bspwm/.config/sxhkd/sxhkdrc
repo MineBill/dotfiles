@@ -1,8 +1,6 @@
+# vim:ft=bash
 # SXHD Configuration
 # MineBill: 23/02/2021
-#
-# Independent Hotkeys
-#
 
 # Terminal emulator
 alt + shift + Return
@@ -16,10 +14,6 @@ alt + p
 alt + shift + Escape
 	pkill -USR1 -x sxhkd
 
-#
-# Bspwm Hotkeys
-#
-
 # Quit/Restart bspwm
 alt + shift + {x,r}
 	bspc {quit,wm -r}
@@ -28,10 +22,6 @@ alt + shift + {x,r}
 alt + shift + q
 	bspc node -c
 
-# Monocle/Tiled layout
-alt + m
-	bspc desktop -l next
-
 # Send the newest marked node to the newest preselected node
 alt + y
 	bspc node newest.marked.local -n newest.!automatic.local
@@ -39,10 +29,6 @@ alt + y
 # Swap the current node and the biggest window
 alt + g
 	bspc node -s biggest.window
-
-#
-# state/flags
-#
 
 # set the window state
 alt + {t,shift + t,s,f}
@@ -85,25 +71,14 @@ alt + {o,i}
 alt + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-#
-# Preselect. Probably not needed for my usage
-#
+## Scrachpads
 
-## preselect the direction
-#alt + ctrl + {h,j,k,l}
-	#bspc node -p {west,south,north,east}
+alt + n
+    tdrop -ma -w -4 alacritty --class num_pad -e bpython
 
-## preselect the ratio
-#alt + ctrl + {1-9}
-	#bspc node -o 0.{1-9}
 
-## cancel the preselection for the focused node
-#alt + ctrl + space
-	#bspc node -p cancel
-
-## cancel the preselection for the focused desktop
-#alt + ctrl + shift + space
-	#bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+alt + m
+    tdrop -ma -w -4 mpv --x11-name="mpv_youtube"
 
 #
 # Move/Resize
@@ -120,3 +95,6 @@ alt + ctrl + shift + {h,j,k,l}
 # Move a floating window
 alt + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+Print
+    flameshot gui

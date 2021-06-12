@@ -4,14 +4,13 @@
 # environment variables. Some entries may override variables
 # set by alacritty itself.
 #env:
-  # TERM variable
-  #
-  # This value is used to set the `$TERM` environment variable for
-  # each instance of Alacritty. If it is not present, alacritty will
-  # check the local terminfo database and use `alacritty` if it is
-  # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
-
+# TERM variable
+#
+# This value is used to set the `$TERM` environment variable for
+# each instance of Alacritty. If it is not present, alacritty will
+# check the local terminfo database and use `alacritty` if it is
+# available, otherwise `xterm-256color` is used.
+#TERM: alacritty
 window:
   # Window dimensions (changes require restart)
   #
@@ -20,26 +19,23 @@ window:
   dimensions:
     columns: 0
     lines: 0
-
-  # Window position (changes require restart)
-  #
-  # Specified in number of pixels.
-  # If the position is not set, the window manager will handle the placement.
-  #position:
-  #  x: 0
-  #  y: 0
-
-  # Window padding (changes require restart)
-  #
-  # Blank space added around the window in pixels. This padding is scaled
-  # by DPI and the specified value is always added at both opposing sides.
-  #padding:
+    # Window position (changes require restart)
+    #
+    # Specified in number of pixels.
+    # If the position is not set, the window manager will handle the placement.
+    #position:
+    #  x: 0
+    #  y: 0
+    # Window padding (changes require restart)
+    #
+    # Blank space added around the window in pixels. This padding is scaled
+    # by DPI and the specified value is always added at both opposing sides.
+    #padding:
     #x: 3
     #y: 3
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
-
   # Window decorations
   #
   # Values for `decorations`:
@@ -50,7 +46,6 @@ window:
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
   #decorations: buttonless
-
   # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:
@@ -61,20 +56,16 @@ window:
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
   #startup_mode: Windowed
-
   # Window title
   #title: Alacritty
-
   # Allow terminal applications to change Alacritty's window title.
   dynamic_title: true
-
   # Window class (Linux/BSD only):
   #class:
-    # Application instance name
-    #instance: Alacritty
-    # General application class
-    #general: Alacritty
-
+  # Application instance name
+  #instance: Alacritty
+  # General application class
+  #general: Alacritty
   # GTK theme variant (Linux/BSD only)
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
@@ -85,7 +76,6 @@ scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
   history: 200
-
   # Scrolling distance multiplier.
   #multiplier: 3
 
@@ -99,61 +89,51 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    #family: Noto Sans Mono
-    family: JetBrains Mono
-
+    family: TerminessTTF Nerd Font
+    # family: mononoki Nerd Font
     # The `style` can be specified to pick a specific face.
     style: Regular
-
-  # Bold font face
-  #bold:
+    # Bold font face
+    #bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
-
     # The `style` can be specified to pick a specific face.
     #style: Bold
-
-  # Italic font face
-  #italic:
+    # Italic font face
+    #italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
-
     # The `style` can be specified to pick a specific face.
     #style: Italic
-
-  # Bold italic font face
-  #bold_italic:
+    # Bold italic font face
+    #bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
-
     # The `style` can be specified to pick a specific face.
     #style: Bold Italic
 
   # Point size
-  size: 14.5
-
+  size: 15.5
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   #offset:
-    #x: 0
-    #y: 1
-
+  #x: 0
+  #y: 1
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upward.
   #glyph_offset:
-    #x: 0
-    #y: 10
-
+  #x: 0
+  #y: 10
   # Thin stroke font rendering (macOS only)
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
@@ -162,38 +142,34 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
-
 # Colors (Hyper)
 colors:
-  # Default colors
+  name: Isotope (dark)
+  author: Chris Kempson
   primary:
-    background: '0x000000'
-    foreground: '0xffffff'
+    background: "#000000"
+    foreground: "#d0d0d0"
   cursor:
-    text: '0xF81CE5'
-    cursor: '0xffffff'
-
-  # Normal colors
+    text: "#000000"
+    cursor: "#d0d0d0"
   normal:
-    black:   '0x000000'
-    red:     '0xfe0100'
-    green:   '0x33ff00'
-    yellow:  '0xfeff00'
-    blue:    '0x0066ff'
-    magenta: '0xcc00ff'
-    cyan:    '0x00ffff'
-    white:   '0xd0d0d0'
-
-  # Bright colors
+    black: "#000000"
+    red: "#ff0000"
+    green: "#33ff00"
+    yellow: "#ff0099"
+    blue: "#0066ff"
+    magenta: "#cc00ff"
+    cyan: "#00ffff"
+    white: "#d0d0d0"
   bright:
-    black:   '0x808080'
-    red:     '0xfe0100'
-    green:   '0x33ff00'
-    yellow:  '0xfeff00'
-    blue:    '0x0066ff'
-    magenta: '0xcc00ff'
-    cyan:    '0x00ffff'
-    white:   '0xFFFFFF'
+    black: "#808080"
+    red: "#ff0000"
+    green: "#33ff00"
+    yellow: "#ff0099"
+    blue: "#0066ff"
+    magenta: "#cc00ff"
+    cyan: "#00ffff"
+    white: "#ffffff"
 
 bell:
   # Visual Bell Animation
@@ -216,10 +192,8 @@ bell:
   # Duration of the visual bell flash. A `duration` of `0` will disable the
   # visual bell animation.
   duration: 3
-
   # Visual bell animation color.
   #color: '#ffffff'
-
   # Bell Command
   #
   # This program is executed whenever the bell is rung.
@@ -237,39 +211,33 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+background_opacity: 0.8
 
 #selection:
-  #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
-
-  # When set to `true`, selected text will be copied to the primary clipboard.
-  #save_to_clipboard: false
-
+#semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+# When set to `true`, selected text will be copied to the primary clipboard.
+#save_to_clipboard: false
 #cursor:
-  # Cursor style
-  #
-  # Values for `style`:
-  #   - ▇ Block
-  #   - _ Underline
-  #   - | Beam
-  #style: Block
-
-  # Vi mode cursor style
-  #
-  # If the vi mode cursor style is `None` or not specified, it will fall back to
-  # the style of the active value of the normal cursor.
-  #
-  # See `cursor.style` for available options.
-  #vi_mode_style: None
-
-  # If this is `true`, the cursor will be rendered as a hollow box when the
-  # window is not focused.
-  #unfocused_hollow: true
-
-  # Thickness of the cursor relative to the cell width as floating point number
-  # from `0.0` to `1.0`.
-  #thickness: 0.15
-
+# Cursor style
+#
+# Values for `style`:
+#   - ▇ Block
+#   - _ Underline
+#   - | Beam
+#style: Block
+# Vi mode cursor style
+#
+# If the vi mode cursor style is `None` or not specified, it will fall back to
+# the style of the active value of the normal cursor.
+#
+# See `cursor.style` for available options.
+#vi_mode_style: None
+# If this is `true`, the cursor will be rendered as a hollow box when the
+# window is not focused.
+#unfocused_hollow: true
+# Thickness of the cursor relative to the cell width as floating point number
+# from `0.0` to `1.0`.
+#thickness: 0.15
 # Live config reload (changes require restart)
 live_config_reload: true
 
@@ -282,17 +250,15 @@ live_config_reload: true
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-shell:
-  #program: /b
+shell: /usr/bin/fish
+#program: /b
 #  args:
 #    - --login
-
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
 #working_directory: "C:\\Users\\Vector"
-
 # WinPTY backend (Windows only)
 #
 # Alacritty defaults to using the newer ConPTY backend if it is available,
@@ -302,25 +268,21 @@ shell:
 # Setting this option to `true` makes Alacritty use the legacy WinPTY backend,
 # even if the ConPTY backend is available.
 #winpty_backend: false
-
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
-
 #mouse:
-  # Click settings
-  #
-  # The `double_click` and `triple_click` settings control the time
-  # alacritty should wait for accepting multiple clicks as one double
-  # or triple click.
-  #double_click: { threshold: 300 }
-  #triple_click: { threshold: 300 }
-
-  # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
+# Click settings
+#
+# The `double_click` and `triple_click` settings control the time
+# alacritty should wait for accepting multiple clicks as one double
+# or triple click.
+#double_click: { threshold: 300 }
+#triple_click: { threshold: 300 }
+# If this is `true`, the cursor is temporarily hidden when typing.
+#hide_when_typing: false
 hints:
   # Keys used for the hint labels.
   #alphabet: "jfkdls;ahgurieowpq"
-
   # List with all available hints
   #
   # Each hint must have a `regex` and either an `action` or a `command` field.
@@ -346,16 +308,16 @@ hints:
   #   - MoveViModeCursor
   #       Move the vi mode cursor to the beginning of the hint.
   enabled:
-   - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
-             [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
-     command: xdg-open
-     post_processing: true
-     mouse:
-       enabled: true
-       mods: None
-     binding:
-       key: U
-       mods: Control|Shift
+    - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|g\
+        it:|ssh:|ftp:)[^\0-\x1f-<>\"\\s{-}\\^⟨⟩`]+"
+      command: xdg-open
+      post_processing: true
+      mouse:
+        enabled: true
+        mods: None
+      binding:
+        key: U
+        mods: Control|Shift
 
 # Mouse bindings
 #
@@ -381,7 +343,6 @@ hints:
 # - `mods` (see key bindings)
 #mouse_bindings:
 #  - { mouse: Middle, action: PasteSelection }
-
 # Key bindings
 #
 # Key bindings are specified as a list of objects. For example, this is the
@@ -525,15 +486,14 @@ hints:
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 key_bindings:
-  - {key: Paste, action: Paste}
-  - {key: Copy, action: Copy}
+  - { key: Paste, action: Paste }
+  - { key: Copy, action: Copy }
   #- { key: L,         mods: Control,             action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi,  chars: "\x0c"          }
   #- { key: PageUp,    mods: Shift,   mode: ~Alt, action: ScrollPageUp,  }
   #- { key: PageDown,  mods: Shift,   mode: ~Alt, action: ScrollPageDown }
   #- { key: Home,      mods: Shift,   mode: ~Alt, action: ScrollToTop,   }
   #- { key: End,       mods: Shift,   mode: ~Alt, action: ScrollToBottom }
-
   # Vi Mode
   #- { key: Space,  mods: Shift|Control, mode: Vi, action: ScrollToBottom          }
   #- { key: Space,  mods: Shift|Control,           action: ToggleViMode            }
@@ -581,7 +541,6 @@ key_bindings:
   #- { key: Slash,  mods: Shift,         mode: Vi, action: SearchBackward          }
   #- { key: N,                           mode: Vi, action: SearchNext              }
   #- { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
-
   # (Windows, Linux, and BSD only)
   #- { key: V,        mods: Control|Shift,           action: Paste            }
   #- { key: C,        mods: Control|Shift,           action: Copy             }
@@ -594,10 +553,8 @@ key_bindings:
   #- { key: Add,      mods: Control,                 action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,                 action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,                 action: DecreaseFontSize }
-
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
-
   # (macOS only)
   #- { key: K,      mods: Command, mode: ~Vi, chars: "\x0c"            }
   #- { key: Key0,   mods: Command,            action: ResetFontSize    }
@@ -616,14 +573,11 @@ key_bindings:
   #- { key: F,      mods: Command|Control,    action: ToggleFullscreen }
   #- { key: F,      mods: Command,            action: SearchForward    }
   #- { key: B,      mods: Command,            action: SearchBackward   }
-
-#debug:
+  #debug:
   # Display the time it takes to redraw each frame.
   #render_timer: false
-
   # Keep the log file after quitting Alacritty.
   #persistent_logging: false
-
   # Log level
   #
   # Values for `log_level`:
@@ -632,8 +586,7 @@ key_bindings:
   #   - Warn
   #   - Info
   #   - Debug
-     #- Trace
+  #- Trace
   #log_level: Warn
-
   # Print all received window events.
   #print_events: false

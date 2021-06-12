@@ -353,12 +353,12 @@ fileviewer *.iso echo "Unable to preview iso files"
 fileviewer *.kdbx echo "KeePassXC database file"
 
     fileviewer *.pdf
-        \ vifmimg pdfpreview %px %py %pw %ph %c
+        \ vifmimg pdf %px %py %pw %ph %c
         \ %pc
         \ vifmimg clear
 
     fileviewer *.epub
-        \ vifmimg epubpreview %px %py %pw %ph %c
+        \ vifmimg epub %px %py %pw %ph %c
         \ %pc
         \ vifmimg clear
 

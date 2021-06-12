@@ -1,16 +1,10 @@
 https://www.archlinux.org/feeds/news/       linux
 https://rust-analyzer.github.io/feed.xml    programming
+https://ziglang.org/news/index.xml          programming
+https://nim-lang.org/feed.xml               programming
 https://godotengine.org/rss.xml             game-engines
 https://bevyengine.org/atom.xml             game-engines
-" "
-https://eclass.uniwa.gr/modules/announcements/rss.php?c=CS210&uid=35540&token=536178ada022f7dcadf09029dd8e4c955fece826  uniwa
-https://eclass.uniwa.gr/modules/announcements/rss.php?c=CS166&uid=35540&token=7a93ae8f4ba4dca7ec2a2fe7f90cd8b84dc41332  uniwa
-https://eclass.uniwa.gr/modules/announcements/rss.php?c=ICE279&uid=35540&token=7ae55808a6e5318fd73eb9d5c4f44b4a360a8916 uniwa
-https://eclass.uniwa.gr/modules/announcements/rss.php?c=ICE297&uid=35540&token=c351cb4babbd9fae655d59fc231dfc903005d02d uniwa
-https://eclass.uniwa.gr/modules/announcements/rss.php?c=CS152&uid=35540&token=1f342732af011f9baf7e3f52538fe5b06f3ecdc7  uniwa
-https://eclass.uniwa.gr/modules/announcements/rss.php?c=ICE243&uid=35540&token=a925ceeae6911075e27376dce69ab84969aa57a2 uniwa
-https://eclass.uniwa.gr/modules/announcements/rss.php?c=CS167&uid=35540&token=3022f3728907a1d6e832c885cf5eadba7f82da7d  uniwa
-http://www.ice.uniwa.gr/feed/ uniwa
+https://gamefromscratch.com/feed/           news
 " "
 https://www.youtube.com/feeds/videos.xml?channel_id=UCeAXVwwurpvQVJozU1GipTg "~CjuGames" youtube
 https://www.youtube.com/feeds/videos.xml?channel_id=UCpeX4D-ArTrsqvhLapAHprQ "~Ryan Levick" youtube

@@ -13,7 +13,7 @@ sleep 0.2
 bspc wm -O HDMI-0 DVI-D-0
 
 bspc config border_width         2
-bspc config window_gap          12
+bspc config window_gap          2
 
 bspc config split_ratio             0.52
 bspc config borderless_monocle      true
@@ -21,10 +21,7 @@ bspc config gapless_monocle         true
 bspc config focus_follows_pointer   true
 bspc config pointer_follows_monitor true
 
-bspc config focused_border_color \#d700af
+bspc config focused_border_color \#ff1372
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
+bspc rule -a Alacritty:num_pad state=floating
+bspc rule -a mpv state=floating

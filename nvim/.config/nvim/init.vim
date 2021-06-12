@@ -42,25 +42,38 @@ set foldmethod=marker
 set nowrap
 set linebreak
 set clipboard=unnamedplus
+set completeopt=menuone
+
+set guifont=Noto\ Sans\ Mono:h18
+" set guifont=mononoki\ Nerd\ Font:h20
+
+" -------------------------------
+"  Neovide-specific settings
+let g:neovide_refresh_rate=140
+let g:neovide_transparency=0.99
+let g:neovide_cursor_animation_length=0.0
+let g:neovide_cursor_trail_length=0.0
+
+let g:nim_nep1=1
 
 if has('mouse')
     set mouse=nv  " Enable mouse in several mode
     set mousemodel=popup  " Set the behaviour of mouse
 endif
-" }}}
 
 if has('vim_starting')
  set runtimepath+=~/.config/nvim
 endif
 
 lua require('plugins')
+lua require('lsp_config')
+lua require('compe_config')
 
-" Autocompletion
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-set completeopt=menuone,noinsert,noselect
+let g:netrw_banner = 0
 
-colorscheme neon
+" colorscheme base16-google-dark
+colorscheme base16-gruvbox-dark-hard
+" }}}
 
 " Keybinds {{{
 let mapleader = " "
@@ -102,11 +115,14 @@ nnoremap N Nzz
 noremap <S-Tab> :bn<CR>
 noremap <C-Tab> :bp<CR>
 
+nnoremap <silent> <C-p> :Telescope find_files<CR>
+nnoremap m :NERDTreeToggle<CR>
 " Terminal
 " }}}
 
 " Autocommands {{{
-autocmd BufEnter * lua require'completion'.on_attach()
+" autocmd BufEnter * lua require'completion'.on_attach()
+autocmd BufEnter *.zig set ft=zig
 augroup HighlightYank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()

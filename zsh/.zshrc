@@ -16,6 +16,10 @@ function aliases {
     alias gs='git status'
 
     alias hg='cat ~/.zsh_history | grep'
+
+    alias pinstall='paru -S'
+    alias psearch='paru -Ss'
+    alias pupdate='paru -Syu'
 }
 aliases
 
@@ -35,6 +39,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export PATH=~/.emacs.d/bin/:$PATH
 export PATH=~/.cargo/bin/:$PATH
+export PATH=~/.nimble/bin:$PATH
 export FZF_DEFAULT_COMMAND="rg --files"
 export EDITOR="nvim"
 export MANPAGER="nvim -c 'set ft=man' -"

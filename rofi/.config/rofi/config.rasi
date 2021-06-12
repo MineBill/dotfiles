@@ -157,15 +157,15 @@ configuration {
     spacing: 0;
     width: 500;
     height: 500;
-    background-color: #1c1c1c;
+    background-color: #1d1f21;
     border-color: #2e343f;
     /*border: 5px 5px 5px 5px;*/
-    text-color: #8ca0aa;
+    text-color: #c5c8c6;
 }
 
 window {
     border: 2px 2px 2px 2px;
-    border-color: #d700af;
+    border-color: #fba922;
 }
 
 inputbar {
@@ -181,7 +181,7 @@ prompt {
 textbox {
     background-color: #1c1c1c;
     border: 0 0 1px 0;
-    border-color: #d700af;
+    border-color: #fba922;
     padding: 8px 16px;
 }
 
