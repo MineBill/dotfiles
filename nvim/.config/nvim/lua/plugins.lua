@@ -11,7 +11,7 @@ function plugin_config()
         },
         tabline = {
             lualine_a = {},
-            lualine_b = {'branch'},
+            lualine_b = {},
             lualine_c = {'filename'},
             lualine_x = {},
             lualine_y = {},
