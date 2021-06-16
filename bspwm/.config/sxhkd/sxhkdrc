@@ -71,18 +71,18 @@ alt + {o,i}
 alt + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-## Scrachpads
+# -----------------------------------------------------
+# -- Scrachpads
 
 alt + n
     tdrop -ma -w -4 alacritty --class num_pad -e bpython
 
 
 alt + m
-    tdrop -ma -w -4 mpv --x11-name="mpv_youtube"
+    tdrop -ma -w 75% -h 75% -x 12% -y 12% -n 1 alacritty --class floating
 
-#
-# Move/Resize
-#
+# -----------------------------------------------------
+# -- Move/Resize
 
 # Rxpand a window by moving one of its side outward
 alt + ctrl + {h,j,k,l}

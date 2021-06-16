@@ -46,7 +46,7 @@ local function save_profiles(threshold)
   _G._packer.profile_output = results
 end
 
-time("Luarocks path setup", true)
+time([[Luarocks path setup]], true)
 local package_path_str = "/home/minebill/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/minebill/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/minebill/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/minebill/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
 local install_cpath_pattern = "/home/minebill/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
@@ -57,8 +57,8 @@ if not string.find(package.cpath, install_cpath_pattern, 1, true) then
   package.cpath = package.cpath .. ';' .. install_cpath_pattern
 end
 
-time("Luarocks path setup", false)
-time("try_loadstring definition", true)
+time([[Luarocks path setup]], false)
+time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
   local success, result = pcall(loadstring(s))
   if not success then
@@ -69,8 +69,8 @@ local function try_loadstring(s, component, name)
   return result
 end
 
-time("try_loadstring definition", false)
-time("Defining packer_plugins", true)
+time([[try_loadstring definition]], false)
+time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["auto-pairs"] = {
     loaded = true,
@@ -80,6 +80,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/bufdelete.nvim"
   },
+  ["fzf.vim"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/fzf.vim"
+  },
   indentLine = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/indentLine"
@@ -88,9 +92,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/kommentary"
   },
+  ["lightspeed.nvim"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/lightspeed.nvim"
+  },
   ["lsp-colors.nvim"] = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
+  },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -99,6 +111,10 @@ _G.packer_plugins = {
   neon = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/neon"
+  },
+  ["neovim-ayu"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/neovim-ayu"
   },
   nerdtree = {
     loaded = true,
@@ -144,6 +160,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/packer.nvim"
   },
+  playground = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/playground"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/plenary.nvim"
@@ -151,6 +171,10 @@ _G.packer_plugins = {
   ["popup.nvim"] = {
     loaded = true,
     path = "/home/minebill/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  ["presence.nvim"] = {
+    loaded = true,
+    path = "/home/minebill/.local/share/nvim/site/pack/packer/start/presence.nvim"
   },
   sonokai = {
     loaded = true,
@@ -170,7 +194,7 @@ _G.packer_plugins = {
   }
 }
 
-time("Defining packer_plugins", false)
+time([[Defining packer_plugins]], false)
 if should_profile then save_profiles() end
 
 END

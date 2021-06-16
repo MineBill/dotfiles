@@ -5,6 +5,9 @@
 " |_|  |_|_|_| |_|\___|____/|_|_|_|
 " MineBill's neovim configuration file
 
+nnoremap <f10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
 " Settings {{{
 set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz
 filetype plugin indent on
@@ -16,6 +19,8 @@ set cursorline
 set showcmd
 set encoding=utf-8
 set signcolumn=number
+set foldlevel=100
+set foldmethod=indent
 
 set inccommand=nosplit
 set incsearch
@@ -37,14 +42,14 @@ set expandtab
 set termguicolors
 set colorcolumn=140
 set fillchars+=vert:│
-set foldmethod=marker
 
 set nowrap
 set linebreak
 set clipboard=unnamedplus
 set completeopt=menuone
 
-set guifont=Noto\ Sans\ Mono:h18
+set guicursor=
+set guifont=Noto\ Sans\ Mono\ Nerd\ Font:h18
 " set guifont=mononoki\ Nerd\ Font:h20
 
 " -------------------------------
@@ -71,8 +76,8 @@ lua require('compe_config')
 
 let g:netrw_banner = 0
 
-" colorscheme base16-google-dark
-colorscheme base16-gruvbox-dark-hard
+" colorscheme ayu
+colorscheme colzig
 " }}}
 
 " Keybinds {{{
@@ -116,6 +121,7 @@ noremap <S-Tab> :bn<CR>
 noremap <C-Tab> :bp<CR>
 
 nnoremap <silent> <C-p> :Telescope find_files<CR>
+nnoremap <silent> <C-b> :Telescope buffers<CR>
 nnoremap m :NERDTreeToggle<CR>
 " Terminal
 " }}}

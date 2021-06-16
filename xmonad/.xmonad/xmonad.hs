@@ -36,7 +36,7 @@ red       = "#900000"
 blue      = "#2E9AFE"
 white     = "#eeeeee"
 
-myTerminal      = "kitty"
+myTerminal      = "alacritty"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -46,7 +46,7 @@ myBorderWidth   = 3
 
 myModMask       = mod1Mask
 
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces    = ["1","2","3","4","5","6","7","8","9", "0"]
 
 myNormalBorderColor  = "#dddddd"
 myFocusedBorderColor = "#ff0000"
@@ -56,9 +56,8 @@ myFocusedBorderColor = "#ff0000"
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
-    [ ((modm , xK_Return), spawn $ XMonad.terminal conf)
-    , ((modm,               xK_c     ), spawn "CM_LAUNCHER=rofi clipmenu -theme custom")
-    --, ((modm,               xK_p     ), spawn "rofi -show drun -theme custom -icon-theme \"Numix\" -show-icons")
+    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+    -- , ((modm,               xK_c     ), spawn "CM_LAUNCHER=rofi clipmenu -theme custom")
     , ((modm,               xK_p     ), spawn "rofi -show drun")
     , ((modm,               xK_q     ), spawn "qutebrowser")
     , ((modm,               xK_space ), sendMessage NextLayout)
@@ -73,12 +72,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
 
-    , ((modm .|. shiftMask, xK_p     ), spawn "~/scripts/get_passwd.sh")
+    -- , ((modm .|. shiftMask, xK_p     ), spawn "~/scripts/get_passwd.sh")
     , ((modm .|. shiftMask, xK_q     ), kill)
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
-    , ((modm .|. shiftMask, xK_Return), windows W.swapMaster)
+    -- , ((modm .|. shiftMask, xK_Return), windows W.swapMaster)
     , ((modm .|. shiftMask, xK_Delete), io (exitWith ExitSuccess))
 
     , ((modm .|. controlMask .|. shiftMask, xK_m), namedScratchpadAction scratchpads "ncmpcpp")
@@ -90,7 +89,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --, ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
-    , ((modm .|. shiftMask, xK_e     ), spawn "~/scripts/powermenu.sh")
+    -- , ((modm .|. shiftMask, xK_e     ), spawn "~/scripts/powermenu.sh")
 
     -- Restart xmonad
     , ((modm .|. shiftMask, xK_r     ), spawn "xmonad --recompile; xmonad --restart")
@@ -123,7 +122,7 @@ scratchpads =
     , NS "newsboat" spawnNewsboat findNewsboat manageNewsboat
     ]
     where
-        spawnNcmpcpp  = myTerminal ++ " --class ncmpcpp ncmpcpp"
+        spawnNcmpcpp  = myTerminal ++ " --class ncmpcpp -e ncmpcpp"
         findNcmpcpp   = className =? "ncmpcpp"
         manageNcmpcpp = customFloating $ W.RationalRect l t w h
                         where
@@ -131,7 +130,7 @@ scratchpads =
                             w = 0.9
                             t = 0.95 - h
                             l = 0.95 - w
-        spawnBtm  = myTerminal ++ " --class btm btm"
+        spawnBtm  = myTerminal ++ " --class btm -e btm"
         findBtm   = className =? "btm"
         manageBtm = customFloating $ W.RationalRect l t w h
                         where
@@ -139,7 +138,7 @@ scratchpads =
                             w = 0.9
                             t = 0.95 - h
                             l = 0.95 - w
-        spawnNewsboat  = myTerminal ++ " --class newsboat newsboat"
+        spawnNewsboat  = myTerminal ++ " --class newsboat -e newsboat"
         findNewsboat   = className =? "newsboat"
         manageNewsboat = customFloating $ W.RationalRect l t w h
                         where

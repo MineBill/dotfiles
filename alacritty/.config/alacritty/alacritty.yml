@@ -89,8 +89,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: TerminessTTF Nerd Font
-    # family: mononoki Nerd Font
+    # family: TerminessTTF Nerd Font
+    family: Noto Sans Mono Nerd Font
     # The `style` can be specified to pick a specific face.
     style: Regular
     # Bold font face
@@ -122,7 +122,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 15.5
+  size: 14.0
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   #offset:
@@ -144,32 +144,32 @@ font:
 #draw_bold_text_with_bright_colors: false
 # Colors (Hyper)
 colors:
-  name: Isotope (dark)
-  author: Chris Kempson
+  # Default colors
   primary:
-    background: "#000000"
-    foreground: "#d0d0d0"
-  cursor:
-    text: "#000000"
-    cursor: "#d0d0d0"
+    background: '#0A0E14'
+    foreground: '#B3B1AD'
+
+  # Normal colors
   normal:
-    black: "#000000"
-    red: "#ff0000"
-    green: "#33ff00"
-    yellow: "#ff0099"
-    blue: "#0066ff"
-    magenta: "#cc00ff"
-    cyan: "#00ffff"
-    white: "#d0d0d0"
+    black: '#01060E'
+    red: '#EA6C73'
+    green: '#91B362'
+    yellow: '#F9AF4F'
+    blue: '#53BDFA'
+    magenta: '#FAE994'
+    cyan: '#90E1C6'
+    white: '#C7C7C7'
+
+  # Bright colors
   bright:
-    black: "#808080"
-    red: "#ff0000"
-    green: "#33ff00"
-    yellow: "#ff0099"
-    blue: "#0066ff"
-    magenta: "#cc00ff"
-    cyan: "#00ffff"
-    white: "#ffffff"
+    black: '#686868'
+    red: '#F07178'
+    green: '#C2D94C'
+    yellow: '#FFB454'
+    blue: '#59C2FF'
+    magenta: '#FFEE99'
+    cyan: '#95E6CB'
+    white: '#FFFFFF'
 
 bell:
   # Visual Bell Animation
@@ -590,3 +590,4 @@ key_bindings:
   #log_level: Warn
   # Print all received window events.
   #print_events: false
+events: false
