@@ -12,10 +12,10 @@
     ./hardware-configuration.nix
     ];
   nixpkgs.config.allowUnfree = true;
-  nix.package = pkgs.nixFlakes;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+  # nix.package = pkgs.nixFlakes;
+  # nix.extraOptions = ''
+  #   experimental-features = nix-command flakes
+  # '';
 
 # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
