@@ -51,6 +51,9 @@
     displayManager = {
       defaultSession = "none+bspwm";
     };
+    desktopManager  = {
+      wallpaper.mode = "fill";
+    };
     autoRepeatDelay = 250;
     autoRepeatInterval = 35;
     videoDrivers = [ "nvidia" "intel" ];
@@ -73,6 +76,7 @@
   };
 
   programs.ssh.startAgent = true;
+  programs.steam.enable = true;
 
 # Configure keymap in X11
 # services.xserver.layout = "us";

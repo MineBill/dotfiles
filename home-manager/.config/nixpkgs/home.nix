@@ -5,6 +5,7 @@
 {
 # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
 # Home Manager needs a bit of information about you and the
 # paths it should manage.
@@ -19,7 +20,7 @@
 
   home.packages = with pkgs; [
     htop neovim-nightly rofi
-    noto-fonts zsh
+    noto-fonts zsh discord steam
   ];
 
   programs.alacritty = {
@@ -27,7 +28,25 @@
     settings = {
       font.size = 14;
       font.normal.family = "Noto Sans Mono";
+      background_opacity = 0.9;
     };
+  };
+
+  services.picom = {
+    enable = true;
+    blur = true;
+    refreshRate = 144;
+    backend = "glx";
+    vSync = true;
+    experimentalBackends = true;
+    extraOptions = ''
+      blur:
+      {
+        method = "box";
+        size = 10;
+        strength = 20;
+      }
+    '';
   };
 
   services.polybar = {
