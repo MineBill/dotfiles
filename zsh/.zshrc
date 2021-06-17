@@ -19,6 +19,7 @@ compinit
 
 # source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source 
 
 # export PATH=~/.emacs.d/bin/:$PATH
 # export PATH=~/.cargo/bin/:$PATH

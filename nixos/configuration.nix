@@ -44,6 +44,10 @@
     keyMap = "us";
   };
 
+  environment.variables = {
+    EDITOR = "nvim";
+  };
+
 # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
@@ -108,18 +112,10 @@
   # programs.bash.promptInit = ''eval "$(starship init bash)"'';
   programs.zsh = {
     enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = [
-        "vi-mode"
-        "git"
-      ];
-    };
     autosuggestions.enable = true;
     syntaxHighlighting = {
       enable = true;
     };
-    promptInit = ''eval "$(starship init zsh)"'';
   };
 
 # List packages installed in system profile. To search, run:
