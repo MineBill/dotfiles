@@ -19,18 +19,16 @@
 
   home.packages = with pkgs; [
     htop neovim-nightly rofi
-    noto-fonts
+    noto-fonts zsh
   ];
 
   programs.alacritty = {
     enable = true;
     settings = {
-      font.size = 15;
+      font.size = 14;
       font.normal.family = "Noto Sans Mono";
     };
   };
-
-  packages.zsh.enable = true;
 
   services.polybar = {
     enable = true;
