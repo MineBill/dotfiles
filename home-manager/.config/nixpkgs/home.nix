@@ -12,6 +12,7 @@
   home.username = "minebill";
   home.homeDirectory = "/home/minebill";
 
+  fonts.fontconfig.enable = true;
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
              url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
@@ -21,13 +22,14 @@
   home.packages = with pkgs; [
     htop neovim-nightly rofi
     noto-fonts zsh discord steam
+    nerdfonts
   ];
 
   programs.alacritty = {
     enable = true;
     settings = {
       font.size = 14;
-      font.normal.family = "Noto Sans Mono";
+      font.normal.family = "Caskaydia Cove Nerd Font";
       background_opacity = 0.9;
     };
   };
