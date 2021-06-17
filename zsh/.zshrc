@@ -26,6 +26,7 @@ compinit
 # export FZF_DEFAULT_COMMAND="rg --files"
 export EDITOR="nvim"
 export MANPAGER="nvim -c 'set ft=man' -"
+export PATH=~/.local/bin/:$PATH
 
 # === Vim Mode ===
 # VIM_MODE_VICMD_KEY='fd'
