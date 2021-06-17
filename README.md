@@ -7,6 +7,12 @@
 - paru:  
     AUR helper that's based on yay and written in rust.
 
+## Notes
+Zsh is mainly configured from [home-manager](./home-manager/.config/nixpkgs/home.nix) but some of the configurations is in [zsh](./zsh)
+
+Alacritty is also configured from [home-manager](./home-manager/.config/nixpkgs/home.nix) so for right now the alacritty folder is not
+used.
+
 ## Newsboat
 ### Getting count of unread items:
 One solution is using `newsboat -x print-unread` but that will fail when there is more than one instance of newsboat running.
