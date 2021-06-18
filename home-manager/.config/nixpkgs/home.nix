@@ -1,17 +1,23 @@
 # vim:ft=nix
 # vim:sw=2
 { config, pkgs, ... }:
-
 {
+  imports = [
+    ./polybar.nix
+    ./alacritty.nix
+    ./zsh.nix
+    ./autorandr.nix
+  ];
 # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
-
-# Home Manager needs a bit of information about you and the
-# paths it should manage.
   home.username = "minebill";
-  home.homeDirectory = "/home/minebill";
+  home.homeDirectory = "/home/${config.home.username}";
+  home.sessionPath = [
+    "/home/${config.home.username}/.local/bin"
+  ];
 
+  # Enable installed fonts
   fonts.fontconfig.enable = true;
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -25,207 +31,9 @@
     nerdfonts gimp sweet
   ];
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      font.size = 14;
-      font.normal.family = "Caskaydia Cove Nerd Font";
-      background_opacity = 0.9;
-    };
-  };
-
-  programs.zsh = {
-    enable = true;
-    dotDir = ".config/zsh";
-    localVariables = {
-      ZVM_VI_INSERT_ESCAPE_BINDKEY = "fd";
-      ZVM_READKEY_ENGINE = "\${ZVM_READKEY_ENGINE_ZLE}";
-      ZVM_CURSOR_STYLE_ENABLED = false;
-    };
-    plugins = [
-      {
-        name = "zsh-vi-mode";
-        src = pkgs.fetchFromGitHub {
-          owner = "jeffreytse";
-          repo = "zsh-vi-mode";
-          rev = "v0.8.4";
-          sha256 = "0a1rvc03rl66v8rgzvxpq0vw55hxn5b9dkmhdqghvi2f4dvi8fzx";
-        };
-      }
-    ];
-    # initExtra = ''eval "$(starship init zsh)"'';
-    enableAutosuggestions = true;
-    enableCompletion = true;
-  };
-
   programs.starship = {
     enable = true;
-    settings = {
-      add_newline = false;
-      format = pkgs.lib.concatStrings [
-        "$line_break"
-        "$package"
-        "$line_break"
-        "$character"
-      ];
-      scan_timeout = 10;
-      character = {
-        success_symbol = "S➜";
-        error_symbol = "➜";
-      };
-    };
-  };
-
-  services.picom = {
-    enable = true;
-    blur = true;
-    refreshRate = 144;
-    backend = "glx";
-    vSync = true;
-    experimentalBackends = true;
-    extraOptions = ''
-      blur:
-      {
-        method = "box";
-        size = 10;
-        strength = 20;
-      }
-    '';
-  };
-
-  services.polybar = {
-    enable = true;
-    package = pkgs.polybar.override {
-      githubSupport = true;
-      mpdSupport = true;
-      pulseSupport = true;
-    };
-    settings = {
-      "bar/main" = {
-        monitor = "$\{env:MONITOR:HDMI-0\}";
-        width = "100%";
-        height = 25;
-        fixed-center = true;
-        bottom = true;
-        wm-restack = "bspwm";
-        enable-ipc = true;
-        cursor-click = "pointer";
-        cursor-scroll = "ns-resize";
-        modules-left = "bspwm";
-        modules-center = "mpd";
-        modules-right = "filesystem pulseaudio xkeyboard cpu eth date";
-        font = [
-          "\"Noto Sans Mono:size=10;2\""
-        ];
-        background = "#aa010101";
-        margin.top = 0;
-        margin.bottom = 0;
-        line.size = 2;
-        line.color = "#f00";
-        module.margin.left = 0;
-        module.margin.right = 1;
-        tray = {
-          position = "right";
-          padding = 2;
-          background = "#010101";
-        };
-      };
-      "module/cpu" = {
-        type = "internal/cpu";
-        interval = 2;
-        label = "[CPU:%percentage:2%]";
-      };
-      "module/xkeyboard" = {
-        type = "internal/xkeyboard";
-        blacklist-0 = "num lock";
-      };
-      "module/filesystem" = {
-        type = "internal/fs";
-        interval = 25;
-        mount-0  = "/";
-        label-mounted = "[%{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%]";
-        label-unmounted = "%mountpoint% not mainted";
-      };
-      "module/bspwm" = {
-        type = "internal/bspwm";
-        label-focused = {
-          text = "%index%";
-          underline = "#bb2222";
-          padding = 1;
-        };
-        label-occupied = {
-          text = "%index%";
-          padding = 1;
-        };
-        label-urgent = {
-          text = "%index%!";
-          background = "#bb2222";
-          padding = 1;
-        };
-        label-empty = {
-          text = "%index%";
-          foreground = "#222222";
-          padding = 1;
-        };
-        label-seperator = "|";
-      };
-      "module/mpd" = {
-        type = "internal/mpd";
-        format = "<label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>";
-        icon-prev = "PR";
-        icon-stop = "S";
-        icon-play = "PL";
-        icon-pause = "PA";
-        icon-next = "N";
-      };
-      "module/eth" = {
-        type = "internal/network";
-        interface = "enp5s0";
-        interval = 3.0;
-        format-connected = {
-          underline = "#55aa55";
-        };
-        label.connected = {
-          text = "[IP:%local_ip%]";
-        };
-        format-disconnected = {
-          text = "DISCONNECTED";
-          foreground = "#dd2222";
-        };
-      };
-      "module/date" = {
-        type = "internal/date";
-        internal = 5;
-        date = "%Y-%m-%d";
-        time = "%H:%M";
-        label = "%date%  %time%";
-      };
-      "module/pulseaudio" = {
-        type = "internal/pulseaudio";
-        format-volume = "[VOL:%percentage%]";
-        lable-muted = "MUTED";
-      };
-    };
-    script = "polybar main &";
-  };
-
-  programs.autorandr = {
-    enable = true;
-    profiles = {
-      "home" = {
-        fingerprint = {
-          HDMI-0 = "00ffffffffffff004c2d900f37345743261d010380351e782a2fada4544799260f474abfef8081c0810081809500a9c0b300714f0101023a801871382d40582c450014302100001e000000fd0030901eaa23000a202020202020000000fc004c433234524735300a20202020000000ff0048345a4d3930353534310a2020018902032ef14890403f1f04130312230907078301000067030c001000803c67d85dc401468000681a00000101309000047480d072382d40102c458014302100001e5a8780a070384d403020350014302100001a011d007251d01e206e28550014302100001e0474801871382d40582c450014302100001e00000000000000000063";
-        };
-        config = {
-          "HDMI-0" = {
-            enable = true;
-            primary = true;
-            mode = "1920x1080";
-            rate = "143.98";
-          };
-        };
-      };
-    };
+    enableZshIntegration = true;
   };
 
 # This value determines the Home Manager release that your
