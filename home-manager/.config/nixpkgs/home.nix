@@ -98,6 +98,7 @@
         font = [
           "\"Noto Sans Mono:size=10;2\""
         ];
+        background = "#aa010101";
         margin.top = 0;
         margin.bottom = 0;
         line.size = 2;
