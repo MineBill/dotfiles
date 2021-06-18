@@ -22,7 +22,7 @@
   home.packages = with pkgs; [
     htop neovim-nightly rofi
     noto-fonts zsh discord steam
-    nerdfonts gimp
+    nerdfonts gimp sweet
   ];
 
   programs.alacritty = {
