@@ -36,6 +36,7 @@
 
   programs.zsh = {
     enable = true;
+    dotDir = ".config/zsh";
     localVariables = {
       ZVM_VI_INSERT_ESCAPE_BINDKEY = "fd";
       ZVM_READKEY_ENGINE = "\${ZVM_READKEY_ENGINE_ZLE}";
@@ -52,9 +53,27 @@
         };
       }
     ];
-    initExtra = ''eval "$(starship init zsh)"'';
+    # initExtra = ''eval "$(starship init zsh)"'';
     enableAutosuggestions = true;
     enableCompletion = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      format = pkgs.lib.concatStrings [
+        "$line_break"
+        "$package"
+        "$line_break"
+        "$character"
+      ];
+      scan_timeout = 10;
+      character = {
+        success_symbol = "S➜";
+        error_symbol = "➜";
+      };
+    };
   };
 
   services.picom = {

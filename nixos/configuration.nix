@@ -51,11 +51,20 @@
 # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    windowManager.bspwm.enable = true;
+    windowManager = {
+      bspwm.enable = true;
+    };
     displayManager = {
-      defaultSession = "none+bspwm";
+      defaultSession = "xfce+bspwm";
+      lightdm = {
+        enable = true;
+      };
     };
     desktopManager  = {
+      xfce = {
+        enable = true;
+        enableXfwm = false;
+      };
       wallpaper.mode = "fill";
     };
     autoRepeatDelay = 250;
