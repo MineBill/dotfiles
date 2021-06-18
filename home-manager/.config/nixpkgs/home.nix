@@ -29,6 +29,8 @@
     htop neovim-nightly rofi
     noto-fonts zsh discord steam
     nerdfonts gimp sweet
+    vulkan-tools
+    linuxPackages_5_10.nvidia_x11_vulkan_beta
   ];
 
   programs.starship = {
