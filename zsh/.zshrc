@@ -1,43 +1,46 @@
-function aliases {
-    alias l='ls -l'
-    alias ll='ls -al'
-    alias cls=clear
-    alias hg='cat ~/.zsh_history | grep'
-}
-aliases
-
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US.UTF-8"
-
+### Zsh Settings
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
+eval "$(starship init zsh)"
 
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source 
+### Aliases
+alias l='ls -l'
+alias ll='ls -al'
+alias cls=clear
+alias hg='cat ~/.zsh_history | grep'
 
-# export PATH=~/.emacs.d/bin/:$PATH
-# export PATH=~/.cargo/bin/:$PATH
-# export PATH=~/.nimble/bin:$PATH
-# export FZF_DEFAULT_COMMAND="rg --files"
+### Exports
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
 export EDITOR="nvim"
 export MANPAGER="nvim -c 'set ft=man' -"
 export PATH=~/.local/bin/:$PATH
 
-# === Vim Mode ===
-# VIM_MODE_VICMD_KEY='fd'
-# source "$HOME/git/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
-# MODE_INDICATOR_VIINS='%F{15}<%F{8}INSERT<%f'
-# MODE_INDICATOR_VICMD='%F{10}<%F{2}NORMAL<%f'
-# MODE_INDICATOR_REPLACE='%F{9}<%F{1}REPLACE<%f'
-# MODE_INDICATOR_SEARCH='%F{13}<%F{5}SEARCH<%f'
-# MODE_INDICATOR_VISUAL='%F{12}<%F{4}VISUAL<%f'
-# MODE_INDICATOR_VLINE='%F{12}<%F{4}V-LINE<%f'
+### Plugin Settings
+ZVM_VI_INSERT_ESCAPE_BINDKEY=fd
+ZVM_CURSOR_STYLE_ENABLED=false
 
-# === Start starship
- eval $(starship init zsh)
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+### Plugins 
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+if [ -e /home/minebill/.nix-profile/etc/profile.d/nix.sh ]; then . /home/minebill/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
